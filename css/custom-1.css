@@ -47,10 +47,10 @@
     --first-screen-icon-color-dark: rgba(65, 178, 224, 0.9);
 
     /* 设置首屏开启状态下的头部的字体颜色（白昼模式） */
-    --first-screen-header-font-color-light: #ddd;
+    --first-screen-header-font-color-light: #000000;
 
     /* 设置首屏开启状态下的头部的字体颜色（暗黑模式） */
-    --first-screen-header-font-color-dark: #333;
+    --first-screen-header-font-color-dark: #ffffff;
 
     /* 设置首屏描述文字 Y 轴的偏移值 */
     --first-screen-font-offset: 100px;
