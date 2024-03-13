@@ -5,7 +5,7 @@
     --base-font-size: 16px;
 
     /* 修改全局默认字体样式 */
-    --base-font-family: STSong, STHeiti;
+    --base-font-family: JETBRAINS MONO;
 
     /* 设置模块卡片的边框圆角 */
     --box-border-radius: 10px;
