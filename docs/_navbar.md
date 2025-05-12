@@ -1,6 +1,6 @@
 <!-- _navbar.md -->
 
-* 找到我
+* 我
   * [Github](https://github.com/LinChentang)
   * [知乎]
   * [哔哩哔哩]
