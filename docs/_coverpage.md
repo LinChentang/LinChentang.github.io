@@ -1,5 +1,5 @@
 <!-- _coverpage.md -->
-![logo](/docs/images/book.png)
+![logo](/images/book.png)
 
 # LinChentang
 
