@@ -9,6 +9,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <!-- 设置浏览器图标 -->
   <link rel="shortcut icon" href="/docs/images/book.png" type="image/x-icon" />
+  <style>
+    body {
+      /* 默认英文字体: Times New Roman, 默认中文字体: 宋体 (SimSun) */
+      /* 浏览器会根据文字内容选择合适的字体。serif 是最后的衬线字体回退。*/
+      font-family: "Times New Roman", Times, "SimSun", "宋体", serif;
+      font-size: 16px; /* 新增：设置全局默认字体大小为16px */
+    }
+
+    /* 代码块和行内代码的字体: JetBrains Mono */
+    /* .markdown-section 是 Docsify 内容区域的常见类名 */
+    .markdown-section pre,
+    .markdown-section code,
+    pre, /* 通用 pre 标签 */
+    code, /* 通用 code 标签 */
+    kbd,  /* 表示键盘输入的标签 */
+    samp  /* 表示程序输出示例的标签 */
+    {
+      font-family: "JetBrains Mono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    }
+  </style>
 </head>
 
 <body>
@@ -111,14 +131,18 @@
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
   <script>
-    const gitalk = new Gitalk({
-      clientID: 'Ov23liJnssgvc6TBJWEE',
-      repo: 'https://github.com/LinChentang/LinChentang.github.io',
-      owner: 'CinChentang',
-      admin: ['LinChentang'],
-      // facebook-like distraction free mode
-      proxy: '/.netlify/functions/gitalk-proxy',
-    })
+    if (typeof Gitalk !== 'undefined') { // 确保 Gitalk 已加载
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liJnssgvc6TBJWEE',
+        repo: 'LinChentang.github.io', 
+        owner: 'LinChentang',         
+        admin: ['LinChentang'],
+        proxy: '/.netlify/functions/gitalk-proxy',
+        id: location.pathname, // 使用路径作为id，确保每个页面评论独立
+        distractionFreeMode: false
+      });
+      gitalk.render('gitalk-container');
+    }
   </script>
   <!-- 字数统计 -->
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
