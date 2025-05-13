@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8">
@@ -9,8 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <!-- 设置浏览器图标 -->
   <link rel="shortcut icon" href="/docs/images/book.png" type="image/x-icon" />
-  <!-- 默认主题 -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 
 <body>
@@ -114,13 +112,12 @@
   <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
   <script>
     const gitalk = new Gitalk({
-      clientID: 'linChentang',
-      clientSecret: 'Github Application Client Secret',
-      repo: 'Github repo',
-      owner: 'linChentang',
-      admin: ['Github repo collaborators, only these guys can initialize github issues'],
+      clientID: 'Ov23liJnssgvc6TBJWEE',
+      repo: 'https://github.com/LinChentang/LinChentang.github.io',
+      owner: 'CinChentang',
+      admin: ['LinChentang'],
       // facebook-like distraction free mode
-      distractionFreeMode: false
+      proxy: '/.netlify/functions/gitalk-proxy',
     })
   </script>
   <!-- 字数统计 -->
