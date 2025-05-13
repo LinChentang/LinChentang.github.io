@@ -1,6 +1,5 @@
 <!-- _coverpage.md -->
-
-<!-- ![logo](_media/icon.svg) -->
+![logo](/docs/images/book.png)
 
 # LinChentang
 
