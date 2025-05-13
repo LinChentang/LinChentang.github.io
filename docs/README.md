@@ -4,7 +4,8 @@
 
 ## title
 
-- DataWhale成员、AI TIME成员
+- DataWhale成员
+- AI TIME成员
 
 ## 教育经历
 
@@ -16,23 +17,17 @@
 
 ## 工作经历
 
-**2023.10 - 2024.6 北京市西城区牛街街道团工委 兼职团委副书记**
+****
 
 ## 开源项目
 
-[llm-cookbook](https://github.com/datawhalechina/llm-cookbook)
-
-[llm-universe](https://github.com/datawhalechina/llm-universe)
-
-[d2l-ai-solutions-manual](https://github.com/datawhalechina/d2l-ai-solutions-manual)
-
-[self-llm](https://github.com/datawhalechina/self-llm)
-
-[math-for-ai](https://github.com/datawhalechina/math-for-ai)
-
-[unusual-deep-learning](https://github.com/datawhalechina/unusual-deep-learning)
-
-[undingable-optimization](https://github.com/datawhalechina/undingable-optimization)
+- [llm-cookbook](https://github.com/datawhalechina/llm-cookbook)
+- [llm-universe](https://github.com/datawhalechina/llm-universe)
+- [d2l-ai-solutions-manual](https://github.com/datawhalechina/d2l-ai-solutions-manual)
+- [self-llm](https://github.com/datawhalechina/self-llm)
+- [math-for-ai](https://github.com/datawhalechina/math-for-ai)
+- [unusual-deep-learning](https://github.com/datawhalechina/unusual-deep-learning)
+- [undingable-optimization](https://github.com/datawhalechina/undingable-optimization)
 
 ##### 找到我
 
