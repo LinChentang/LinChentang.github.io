@@ -1,0 +1,26 @@
+{
+  "name": "linchentang.github.io",
+  "version": "1.0.0",
+  "description": "我的个人网站",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LinChentang/LinChentang.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LinChentang/LinChentang.github.io/issues"
+  },
+  "homepage": "https://github.com/LinChentang/LinChentang.github.io#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
