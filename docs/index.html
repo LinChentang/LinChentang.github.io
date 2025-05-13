@@ -45,13 +45,18 @@
       // 禁用 emoji 解析
       noEmoji: false,
       // 显示文档更新日期
-      formatUpdated: '{YYYY}.{MM}.{DD} {HH}:{mm}',
       formatUpdated: function(time) {
-      // ...
-      return time;
-    },
+      // 实现 '{YYYY}.{MM}.{DD} {HH}:{mm}' 格式
+        const d = new Date(time);
+        const year = d.getFullYear();
+        const month = ('0' + (d.getMonth() + 1)).slice(-2);
+        const day = ('0' + d.getDate()).slice(-2);
+        const hour = ('0' + d.getHours()).slice(-2);
+        const minute = ('0' + d.getMinutes()).slice(-2);
+        return `${year}.${month}.${day} ${hour}:${minute}`;
+      },
       // 一个语言列表
-      fallbackLanguages: ['fr', 'de'],
+      //fallbackLanguages: ['fr', 'de'],
       // 找不到指定页面时加载
       notFoundPage: true,
       // 字数统计
@@ -61,24 +66,7 @@
         color:'rgb(90,90,90)',
         language:'chinese'
       },
-      // markdown配置
-      markdown: {
-        renderer: {
-          code: function(code, lang) {
-            if (lang === "mermaid") {
-              return (
-                '<div class="mermaid">' + mermaid.render('mermaid-svg-' + num++, code) + "</div>"
-              );
-            }
-            return this.origin.code.apply(this, arguments);
-          }
-        }
-      }
-    }
-  </script>
-  <script>
-    // 搜索配置(url：https://docsify.js.org/#/zh-cn/plugins?id=%e5%85%a8%e6%96%87%e6%90%9c%e7%b4%a2-search)
-    window.$docsify = {
+      //搜索
       search: {
         maxAge: 86400000,// 过期时间，单位毫秒，默认一天
         paths: auto,// 注意：仅适用于 paths: 'auto' 模式
@@ -91,14 +79,23 @@
         noData: 'No Results!',
         // 支持本地化
         noData: {
-        '/zh-cn/': '找不到结果',
-        '/': 'No Results'
+          '/zh-cn/': '找不到结果',
+          '/': 'No Results'
         },
         depth: 4,
         hideOtherSidebarContent: false,
-        namespace: 'Docsify-Guide',
+        namespace: 'LinChentang',
+      },
+      // markdown配置
+      markdown: {
+        renderer: {
+          code: function(code, lang) {
+            return this.origin.code.apply(this, arguments);
+          }
+        }
       }
     }
+  </script>
   </script>
   <!-- 主题 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
