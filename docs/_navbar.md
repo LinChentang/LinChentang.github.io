@@ -1,5 +1,14 @@
 <!-- _navbar.md -->
 
+* Me
+  * [CV](Me/CV.md)
+  * [Project](Me/Project.md)
+  * [Academic](Me/Academic.md)
+
+* StudyNotes
+  * [DiveintoDeepLearning](StudyNotes/DiveintoDeepLearning/Notes/README.md)
+  * [MachineLearning](StudyNotes/MachineLearning/Notes/README.md)
+
 * Follow Me
   * [Github](https://github.com/LinChentang)
   * [Email](z1273611131@163.com)
