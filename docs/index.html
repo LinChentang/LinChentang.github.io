@@ -4,98 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <title>LinChentang</title>
-  <link rel="manifest" href="manifest.json">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta name="referrer" content="no-referrer" />
   <!-- 设置浏览器图标 -->
   <link rel="shortcut icon" href="images/book.png" type="image/x-icon" />
-  <style>
-    section.cover {
-      display: flex; /* 启用 Flexbox 布局 */
-      flex-direction: column; /* 让子元素垂直堆叠 */
-      align-items: center;    /* 在交叉轴上居中 (水平居中) */
-      justify-content: center; /* 在主轴上居中 (垂直居中) */
-      min-height: 100vh;      /* 使封面页至少占据整个视口的高度，这样垂直居中才有意义 */
-      text-align: center;     /* 确保 Flex 项内部的文本内容也居中 */
-      padding: 20px;          /* 给封面页添加一些内边距，避免内容过于贴近边缘 */
-      box-sizing: border-box; /* 让 padding 不会增加元素的总高度 (100vh) */
-    }
-    /* 为 blockquote 添加更明显的边框和内边距 */
-    section.cover blockquote {
-      /* 如果主题背景是浅色，边框用深色；反之亦然 */
-      border-left: 3px solid var(--theme-color, #42b983); /* 使用主题色或一个合适的颜色 */
-      padding-left: 15px;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 600px;
-      /* color: #333; */ /* 如果主题背景是浅色，可以指定一个深色文字，或者让它自然继承 */
-    }
-    /* 针对封面上的链接列表 ul li a 的悬停效果和默认颜色调整 */
-    section.cover ul li a {
-      /* color: var(--theme-color, #42b983); */ /* 链接颜色可以尝试使用主题色，或让其继承 */
-      text-decoration: none; /* 通常链接默认有下划线，如果想去掉可以保留这个 */
-    }
-    section.cover ul li a:hover {
-      /* color: #2c8f62; */ /* 悬停颜色也需要调整 */
-      text-decoration: underline;
-    }
-    /* 为封面页内的直接子元素添加一些通用间距 (可选) */
-    section.cover > * { /* 选择 section.cover 的所有直接子元素 */
-      margin-top: 1em;
-      margin-bottom: 1em;
-    }
-    /* 针对封面上的 Logo 图片 */
-    section.cover img {
-      display: block; /* 使图片表现为块级元素，更容易控制 */
-      /* 您可以根据需要调整logo的大小，例如：*/
-      /* max-width: 150px; */
-      /* max-height: 150px; */
-      margin-bottom: 20px; /* 图片下方的间距 */
-    }
-    /* 针对封面上的引用 blockquote */
-    section.cover blockquote {
-      font-size: 1.2em; /* 调整引用文字大小 (示例) */
-      margin-bottom: 30px; /* 引用下方的间距 */
-    }
-    /* 针对封面上的链接列表 ul */
-    section.cover ul {
-      list-style: none; /* 移除列表项前的默认项目符号 (小圆点) */
-      padding: 0;       /* 移除列表的默认内边距 */
-      margin-bottom: 40px; /* 列表下方的间距 */
-    }
-    section.cover ul li {
-      margin-bottom: 12px; /* 列表项之间的间距 */
-    }
-    section.cover ul li a {
-      font-size: 1.1em; /* 调整列表链接文字大小 (示例) */
-    }
-
-    /* 针对封面上的 "开始使用 Let Go" 按钮 */
-    /* Docsify 的主题 (如 vue.css) 通常会给封面页的最后一个链接p标签内的a标签应用按钮样式 */
-    /* 您可以通过更具体的选择器或直接用 !important 来覆盖它，或者添加新样式 */
-    section.cover .cover-main > p:last-child a {
-      /* 示例：您可以修改按钮的背景色、文字颜色、内边距、圆角等 */
-      background-color: var(--theme-color, #42b983);
-      color: white; /* 白色文字在主题色背景上通常是合适的 */
-      padding: 12px 28px;
-      border-radius: 25px;
-      font-size: 1.1em;
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-      border: none; /* 移除非透明背景按钮的边框，或者设置一个协调的边框 */
-      /* border: 1px solid var(--theme-color, #42b983); */
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    section.cover .cover-main > p:last-child a:hover {
-      /* background-color: #36a270; */ /* 主题色的深色变体 */
-      /* 你需要找到一个合适的主题色悬停颜色，或者使用 filter: brightness(90%); */
-      filter: brightness(90%); /* 例如，点击时变暗一点 */
-      transform: translateY(-2px);
-    }
-  </style>
   <style>
     body {
       /* 默认英文字体: Times New Roman, 默认中文字体: 宋体 (SimSun) */
@@ -108,33 +22,6 @@
       flex-direction: column;
       min-height: 100vh; /* 关键：确保 body 至少撑满整个视口高度 */
       margin: 0; /* 推荐：移除 body 的默认外边距 */
-    }
-    /* Docsify 侧边栏切换按钮 (汉堡菜单) 样式调整 */
-    button.sidebar-toggle {
-      background-color: transparent !important; /* 移除默认的或主题带来的背景色 */
-      border: none !important; /* 移除边框 */
-      outline: none !important; /* 移除点击时的轮廓 */
-      padding: 10px; /* 可以按需调整内边距 */
-      /*position: fixed; /* 或者 absolute，取决于你希望它如何定位 */
-      /*top: 8px; /* 示例：距离顶部距离 */
-      /*left: 10px; /* 示例：距离左侧距离 */
-      z-index: 30; /* 确保在其他内容之上，但在展开的侧边栏之下 */
-    }
-
-    /* 汉堡菜单图标的线条颜色 */
-    button.sidebar-toggle .icon-bars {
-      background-color: #FFF !important; /* 假设你的页面背景是深色，线条用白色 */
-      /* 如果你的页面背景是浅色（比如截图中的浅绿色），线条颜色应该用深色 */
-      /* background-color: #333 !important; */ /* 例如深灰色线条 */
-    }
-
-    /* 当侧边栏打开时，汉堡菜单图标可能会变为关闭图标 (X) */
-    button.sidebar-toggle.open .icon-bars {
-      /* 关闭图标通常由两条线旋转构成，颜色与展开时一致 */
-      background-color: #FFF !important; /* 或者 #333 !important; */
-    }
-    html.is-showing-cover button.sidebar-toggle { /* Docsify 激活封面时会给 html 加 is-showing-cover 类 */
-      display: none !important;
     }
     /* 代码块和行内代码的字体设置: JetBrains Mono 优先，后备等宽字体 */
     /* .markdown-section 是 Docsify 主要内容区域的类名 */
@@ -158,18 +45,6 @@
       flex-shrink: 0; /* 防止页脚在内容过多时被压缩 */
       /* 您在 $docsify.footer.style 中设置的 "text-align: center;" 仍然会对其内部文本生效 */
     }
-    #app {
-      flex-grow: 1; /* 关键：让 #app 占据所有可用的垂直空间 */
-      /* 如果 ,Docsify 渲染后 #app 内部的 .content 或其他元素导致宽度问题，可能需要 width: 100%; */
-    }
-    footer.docsify-footer-enh, footer {
-      width: 100%;
-      background-color: #ffffff;
-      z-index: 100;
-      border-top: 1px solid #eaeaea;
-      padding: 10px 0;
-      flex-shrink: 0; /* 页脚不收缩 */
-    }
     /* Markdown内容区 strong 标签 (加粗文本) 的颜色 */
     .markdown-section strong {
       color: rgb(239, 112, 96);
@@ -186,19 +61,16 @@
       background-color: #f8f8f8; /* 浅色背景 */
       color: #e96900; /* 文字颜色 */
     }
-
     /* Markdown内容区段落 `p` 内的行内代码 `code` 的特定样式 */
     .markdown-section p code {
       background-color: #f9f2f4 !important; /* 背景色 */
       color: #c7254e !important; /* 文字颜色 */
     }
-
     /* Markdown内容区中直接子元素 `div` 下的图片 `img`，以及 `pre` (代码块) 的样式 */
     .markdown-section > div > img, .markdown-section pre {
       box-shadow: 2px 2px 10px 4px rgba(0,0,0,0.05) !important; /* 阴影效果，更柔和 */
       border-radius: 5px; /* 圆角 */
     }
-
     /* Markdown内容区链接 `a` 在非鼠标悬停状态下，移除下划线 */
     .markdown-section a {
       color: var(--theme-color, #42b983); /* 链接颜色使用主题色或自定义 */
@@ -212,16 +84,15 @@
     }
     /* 特定级别标题内 `<span>` 标签的颜色 */
     /* 您需要在Markdown中为标题内的文本添加span标签才能使这些规则生效，例如：## <span>我的二级标题</span> */
-    #main h2 span{ color:#18b566 !important; } /* id为main的元素内h2标题下的span */
-    #main h3 span{ color:#089acc !important; } /* id为main的元素内h3标题下的span */
-    #main h4 span{ color:#FF9700 !important; } /* id为main的元素内h4标题下的span */
+    .markdown-section h2 span{ color:#18b566 !important; }
+    .markdown-section h3 span{ color:#089acc !important; }
+    .markdown-section h4 span{ color:#FF9700 !important; }
 
     /* Markdown内容区提示块 `p.tip` 和所有表格行 `tr` 的字体大小 */
     .markdown-section p.tip,
     .markdown-section tr:nth-child(1n) { /* nth-child(1n) 选中所有行 */
       font-size: 16px !important;
     }
-
     /* Markdown内容区 h1 和 h2 标题的外边距调整 */
     .markdown-section h1 {
       margin: 3rem 0 2rem 0; /* 上3rem，下2rem，左右0 */
@@ -229,7 +100,6 @@
     .markdown-section h2 {
       margin: 2rem 0 1rem; /* 上2rem，下1rem，左右0 */
     }
-
     /* Docsify代码块复制按钮 (docsify-copy-code插件) 的样式 */
     .docsify-copy-code-button {
       background: #007be8 !important; /* 背景色，与Docsify配置中的themeColor一致 */
@@ -237,19 +107,16 @@
       font-size: 13px !important; /* 字体大小 */
       border-radius: 3px; /* 圆角 */
     }
-
     /* 复制成功后显示的提示文字 ("Copied!") 的样式 */
     .docsify-copy-code-button::after{
       color: #FFFFFF !important;
       font-size: 13px !important;
     }
-    
     /* Markdown内容区直接子元素 `p` (段落) 的样式 */
     .markdown-section > p {
       font-size: 16px !important; /* 字体大小 */
       line-height: 1.8; /* 行高，增加段落可读性 */
     }
-
     /* 代码块头部装饰图标 开始 */
     /* 为Markdown内容区的pre标签(代码块)的上方添加一个伪元素作为头部 */
     .markdown-section pre:before {
@@ -266,14 +133,12 @@
       border-top-right-radius: 5px; /* 右上圆角 */
     }
     /* 代码块头部装饰图标 结束 */
-
     /* 代码块 `pre` 标签本身的样式 */
     .markdown-section pre {
       background-color: #212121 !important; /* 整体背景色 */
       padding: 0 !important; /* 移除Docsify默认的padding，因为头部图标和内部code元素会自行处理间距 */
       border-radius: 5px; /* 确保pre标签有圆角 */
     }
-
     /* 代码块内部的 `code` 标签 (实际代码内容) 的样式 */
     .markdown-section pre > code {
       color: #c0c3c1 !important; /* 代码文字颜色 */
@@ -290,7 +155,6 @@
       border-bottom-left-radius: 5px; /* 左下圆角 */
       border-bottom-right-radius: 5px; /* 右下圆角 */
     }
-
     /* 有序列表 (ol) 和无序列表 (ul) 的样式 */
     ol, ul {
       line-height: 1.8 !important; /* 行高，增加可读性 */
@@ -299,7 +163,6 @@
     ol li, ul li {
       font-size: 16px !important;
     }
-
     /* 响应式布局：当屏幕宽度大于等于600px时应用的样式 */
     @media (min-width:600px) {
       .markdown-section pre > code {
@@ -327,17 +190,14 @@
         top: 3px !important;
       }
     }
-    
     /* Docsify封面页 (coverpage) h1标题的样式 */
     section.cover h1 {
       margin: 0; /* 移除外边距 */
     }
-
     /* Markdown主内容区域的左右外边距 */
     .markdown-section {
       margin: 0 3.2% !important;
     }
-
     /* PrismJS 语法高亮 Token 的颜色自定义覆盖 (美化代码高亮效果) */
     .token.directive.keyword{ color: #4faee2 !important; } /* 例如C/C++中的#include等预处理指令 */
     .token.keyword{ color: #c678dd !important; } /* 关键字，如 if, else, for, function等 */
@@ -353,14 +213,12 @@
     .token.operator { color: #56b6c2 !important; } /* 操作符，如 + - * / = */
     .token.boolean { color: #d19a66 !important; } /* 布尔值 true, false */
     .token.class-name { color: #e5c07b !important; } /* 类名 */
-
     /* Docsify 标题旁边自动生成的锚点链接 ("#") 的样式 */
     a.section-link{
       font-size: .9rem !important; /* 字体大小 */
     }
   </style>
 </head>
-
 <body>
   <!-- 定义加载时候的动作 -->
   <div id="app">加载中...</div>
@@ -463,7 +321,6 @@
                 return '<pre>Error: Viz.js not loaded.</pre>';
               }
             }
-
             // PDF渲染逻辑的辅助函数 (配合docsify-pdf-embed.js和PDFObject.js)
             var pdf_renderer = function(code, lang, verify) {
               // 生成唯一ID的函数，用于PDF容器div
@@ -494,12 +351,10 @@
               }
               return false; // 如果语言不是pdf，则此渲染器不处理
             };
-
             // 如果pdf_renderer确认能处理此语言（即lang为pdf）
             if(pdf_renderer(code, lang, true)){
               return pdf_renderer(code, lang, false); // 则调用pdf_renderer进行实际渲染
             }
-            
             // 如果不是DOT或PDF，则使用Docsify原始的代码渲染逻辑。
             // `this.origin.code` 指向Docsify内置的或上一个被覆盖的code渲染函数。
             // `apply(this, arguments)` 调用原始函数并传递相同的上下文和参数。
@@ -550,7 +405,6 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1/dist/docsify-tabs.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/docsify-footer-enh.min.js"></script>
-  </script>
   <!-- 支持数学公式 -->
   <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
