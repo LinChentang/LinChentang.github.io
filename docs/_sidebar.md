@@ -1,10 +1,10 @@
 <!-- docs/_sidebar.md -->
 
-* 个人简介
-  * [简历](个人简介/简历.md)
-  * [项目](个人简介/项目.md)
-  * [学术](个人简介/学术.md)
+* Me
+  * [CV](Me/CV.md)
+  * [Project](Me/Project.md)
+  * [Academic](Me/Academic.md)
 
-* 学习笔记
-  * [动手学深度学习](学习笔记/动手学深度学习/)
-  * [西瓜书](学习笔记/西瓜书/)
+* StudyNotes
+  * [Dive into Deep Learning](StudyNotes/DiveintoDeepLearning/)
+  * [Machine Learning](StudyNotes/MachineLearning/)
