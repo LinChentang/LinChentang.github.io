@@ -22,34 +22,6 @@
       padding: 20px;          /* 给封面页添加一些内边距，避免内容过于贴近边缘 */
       box-sizing: border-box; /* 让 padding 不会增加元素的总高度 (100vh) */
     }
-    /* 打字效果的光标 */
-    #typing-title,
-    #typing-quote {
-      position: relative; /* 如果需要精确定位光标 */
-      /* 根据主题背景色，确保这里的文字颜色是可见的 */
-      /* 例如: color: #333; (如果主题背景是浅色) */
-    }
-
-    #typing-title:not(.typing-done)::after,
-    #typing-quote:not(.typing-done)::after {
-      content: '|';
-      /* color: #333; */ /* 光标颜色，应与文字颜色协调或略有区别 */
-      animation: blink 1s step-end infinite;
-      margin-left: 2px; 
-    }
-
-    @keyframes blink {
-      from, to { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    /* 当 .typing-done 类被添加到元素上时，隐藏光标 */
-    #typing-title.typing-done::after,
-    #typing-quote.typing-done::after {
-      content: ''; 
-      animation: none; 
-      display: none; 
-    }
     /* 为 blockquote 添加更明显的边框和内边距 */
     section.cover blockquote {
       /* 如果主题背景是浅色，边框用深色；反之亦然 */
@@ -188,10 +160,14 @@
     }
     #app {
       flex-grow: 1; /* 关键：让 #app 占据所有可用的垂直空间 */
-      display: flex;
       /* 如果 ,Docsify 渲染后 #app 内部的 .content 或其他元素导致宽度问题，可能需要 width: 100%; */
     }
     footer.docsify-footer-enh, footer {
+      width: 100%;
+      background-color: #ffffff;
+      z-index: 100;
+      border-top: 1px solid #eaeaea;
+      padding: 10px 0;
       flex-shrink: 0; /* 页脚不收缩 */
     }
     /* Markdown内容区 strong 标签 (加粗文本) 的颜色 */
@@ -551,8 +527,6 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   <!-- 支持 DOT 语言 -->
   <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/viz.js"></script>
-  <!-- 支持 LaTex 语言 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
   <!-- 添加 PDF 页面展示功能 -->
   <!-- PDFObject.js is a required dependency of this plugin -->
   <!--<script src="//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>-->
@@ -576,15 +550,6 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1/dist/docsify-tabs.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/docsify-footer-enh.min.js"></script>
-  <script>
-    if (typeof navigator.serviceWorker !== 'undefined') { // 检查浏览器是否支持Service Worker API
-      navigator.serviceWorker.register('pwa.js') // 尝试注册名为pwa.js的Service Worker文件
-        .then(function(registration) { // 注册成功后的回调
-          console.log('Service Worker registered with scope:', registration.scope); // 在控制台打印成功信息和作用域
-        }).catch(function(error) { // 注册失败后的回调
-          console.log('Service Worker registration failed:', error); // 在控制台打印失败信息和错误对象
-        });
-    }
   </script>
   <!-- 支持数学公式 -->
   <script type="text/x-mathjax-config">
@@ -600,86 +565,5 @@
       });
   </script>
   <script src="https://mathjax.cnblogs.com/2_7_5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;v=20200504"></script>
-  <script>
-  function typeEffect(element, text, speed, onCharTyped, onFinished) {
-    if (!element) {
-      // console.error('TypeEffect Error: Target element not found for text: "' + text + '"');
-      if (onFinished) onFinished();
-      return;
-    }
-    let i = 0;
-    element.innerHTML = ''; 
-  
-    if (element.classList) {
-      element.classList.remove('typing-done');
-    }
-
-    function typing() {
-      if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        i++;
-        if (onCharTyped) onCharTyped(element);
-        setTimeout(typing, speed);
-      } else {
-        if (element.classList && typeof element.classList.add === 'function') {
-          element.classList.add('typing-done'); 
-        }
-        if (onFinished) onFinished(); 
-      }
-    }
-    typing();
-  }
-
-  if (window.docsify && window.docsify.hooks) {
-    docsify.hooks.doneEach(function(html, next) {
-      // console.log('Docsify doneEach hook fired. Current route path:', docsify.route.path, 'Is cover:', docsify.getState().isCover);
-
-      setTimeout(function() {
-        const isCoverActive = !!document.querySelector('section.cover.show');
-      
-        if (isCoverActive) {
-          // console.log('Cover page is active and section.cover.show found.');
-
-          const titleElement = document.getElementById('typing-title');
-          const quoteElement = document.getElementById('typing-quote');
-          const contentElement = document.getElementById('cover-links-and-button'); // 确保这个ID与 _coverpage.md 中一致
-          // console.log('titleElement:', titleElement);
-          // console.log('quoteElement:', quoteElement);
-          // console.log('contentElement:', contentElement);
-
-          const titleText = "LinChentang";
-          const quoteText = "永远相信美好的事情即将发生！";
-          const typingSpeed = 120; 
-
-          if (titleElement && quoteElement && contentElement) {
-            // console.log('All elements for typing effect found. Initializing...');
-          
-            titleElement.innerHTML = '';
-            quoteElement.innerHTML = '';
-            contentElement.style.display = 'none';
-
-            typeEffect(titleElement, titleText, typingSpeed, null, function() {
-              // console.log('Title typing finished.');
-              typeEffect(quoteElement, quoteText, typingSpeed, null, function() {
-              // console.log('Quote typing finished.');
-                contentElement.style.display = 'block'; 
-                // console.log('Rest of the cover content displayed.');
-              });
-            });
-          } else {
-            // console.warn('One or more elements for typing effect not found. Typing effect aborted.');
-            if(contentElement) contentElement.style.display = 'block';
-          }
-        } else {
-          // console.log('Not on cover page or cover section not yet shown. Typing effect skipped.');
-        }
-      }, 100); 
-      next(html); 
-    });
-  } else {
-   console.error('Docsify or Docsify hooks not found. Typing effect cannot be initialized.');
-  }
-  </script> 
 </body>
-
 </html>
