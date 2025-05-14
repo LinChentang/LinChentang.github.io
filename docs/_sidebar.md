@@ -6,5 +6,5 @@
   * [Academic](Me/Academic.md)
 
 * StudyNotes
-  * [Dive into Deep Learning](StudyNotes/DiveintoDeepLearning/)
-  * [Machine Learning](StudyNotes/MachineLearning/)
+  * [Dive into Deep Learning](StudyNotes/DiveintoDeepLearning/Notes/)
+  * [Machine Learning](StudyNotes/MachineLearning/Notes/)

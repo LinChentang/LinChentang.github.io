@@ -1,6 +1,6 @@
 <table style="border: none; border-collapse: collapse;">
   <tr style="border: none;">
-    <td style="border: none; width: 140px; height: 200px; vertical-align: middle; padding-right: 5px;">
+    <td style="border: none; width: 140px; height: 210px; vertical-align: middle; padding-right: 5px;">
       <img src="../images/ChunshengZuo休闲.jpg" alt="Chunsheng Zuo Profile Photo" width="240px" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); border-radius: 5px;" />
     </td>
     <td style="border: none; vertical-align: middle;">
