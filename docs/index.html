@@ -22,19 +22,33 @@
       padding: 20px;          /* 给封面页添加一些内边距，避免内容过于贴近边缘 */
       box-sizing: border-box; /* 让 padding 不会增加元素的总高度 (100vh) */
     }
-    #typing-title::after,
-    #typing-quote::after {
-      content: '|';
-      animation: blink 1s step-end infinite;
+    /* 打字效果的光标 */
+    #typing-title,
+    #typing-quote {
+      position: relative; /* 如果需要精确定位光标 */
+      /* 根据主题背景色，确保这里的文字颜色是可见的 */
+      /* 例如: color: #333; (如果主题背景是浅色) */
     }
+
+    #typing-title:not(.typing-done)::after,
+    #typing-quote:not(.typing-done)::after {
+      content: '|';
+      /* color: #333; */ /* 光标颜色，应与文字颜色协调或略有区别 */
+      animation: blink 1s step-end infinite;
+      margin-left: 2px; 
+    }
+
     @keyframes blink {
       from, to { opacity: 1; }
       50% { opacity: 0; }
     }
-    /* 打字完成后移除光标的样式 (通过JS控制) */
-    .typing-done::after {
-       content: '';
-      animation: none;
+
+    /* 当 .typing-done 类被添加到元素上时，隐藏光标 */
+    #typing-title.typing-done::after,
+    #typing-quote.typing-done::after {
+      content: ''; 
+      animation: none; 
+      display: none; 
     }
     /* 为 blockquote 添加更明显的边框和内边距 */
     section.cover blockquote {
@@ -117,51 +131,84 @@
     }
   </style>
   <script>
-  function typeEffect(element, text, speed, callback) {
+  function typeEffect(element, text, speed, onCharTyped, onFinished) {
+    if (!element) {
+      // console.error('TypeEffect Error: Target element not found for text: "' + text + '"');
+      if (onFinished) onFinished();
+      return;
+    }
     let i = 0;
-    element.innerHTML = ''; // 清空元素内容
+    element.innerHTML = ''; 
+  
+    if (element.classList) {
+      element.classList.remove('typing-done');
+    }
+
     function typing() {
       if (i < text.length) {
         element.innerHTML += text.charAt(i);
         i++;
+        if (onCharTyped) onCharTyped(element);
         setTimeout(typing, speed);
-      } else if (callback) {
-        callback();
+      } else {
+        if (element.classList && typeof element.classList.add === 'function') {
+          element.classList.add('typing-done'); 
+        }
+        if (onFinished) onFinished(); 
       }
     }
     typing();
   }
-  // Docsify hook: executed after HTML is rendered
-  docsify.hooks.doneEach(function() {
-    // 只在封面页执行打字效果
-    if (document.querySelector('section.cover')) {
-      const titleElement = document.getElementById('typing-title');
-      const quoteElement = document.getElementById('typing-quote');
-      const linksElement = document.getElementById('cover-links');
 
-      const titleText = "LinChentang";
-      const quoteText = "永远相信美好的事情即将发生！";
-      const typingSpeed = 100; // 打字速度，单位毫秒
+  if (window.docsify && window.docsify.hooks) {
+    docsify.hooks.doneEach(function(html, next) {
+      // console.log('Docsify doneEach hook fired. Current route path:', docsify.route.path, 'Is cover:', docsify.getState().isCover);
 
-      if (titleElement && quoteElement && linksElement) {
-        // 先隐藏，打字时会逐字显示
-        titleElement.innerHTML = '';
-        quoteElement.innerHTML = '';
-        linksElement.style.display = 'none'; // 确保链接初始隐藏
+      setTimeout(function() {
+        const isCoverActive = !!document.querySelector('section.cover.show');
+      
+        if (isCoverActive) {
+          // console.log('Cover page is active and section.cover.show found.');
 
-        // 开始打标题
-        typeEffect(titleElement, titleText, typingSpeed, function() {
-          titleElement.classList.add('typing-done'); // 移除光标
-          // 标题打完后，开始打引用
-          typeEffect(quoteElement, quoteText, typingSpeed, function() {
-            quoteElement.classList.add('typing-done'); // 移除光标
-            // 引用打完后，显示其他链接和按钮
-            linksElement.style.display = 'block'; // 或者其他合适的 display 值，如 'flex'
-          });
-        });
-      }
-    }
-  });
+          const titleElement = document.getElementById('typing-title');
+          const quoteElement = document.getElementById('typing-quote');
+          const contentElement = document.getElementById('cover-links-and-button'); // 确保这个ID与 _coverpage.md 中一致
+          // console.log('titleElement:', titleElement);
+          // console.log('quoteElement:', quoteElement);
+          // console.log('contentElement:', contentElement);
+
+          const titleText = "LinChentang";
+          const quoteText = "永远相信美好的事情即将发生！";
+          const typingSpeed = 120; 
+
+          if (titleElement && quoteElement && contentElement) {
+            // console.log('All elements for typing effect found. Initializing...');
+          
+            titleElement.innerHTML = '';
+            quoteElement.innerHTML = '';
+            contentElement.style.display = 'none';
+
+            typeEffect(titleElement, titleText, typingSpeed, null, function() {
+              // console.log('Title typing finished.');
+              typeEffect(quoteElement, quoteText, typingSpeed, null, function() {
+              // console.log('Quote typing finished.');
+                contentElement.style.display = 'block'; 
+                // console.log('Rest of the cover content displayed.');
+              });
+            });
+          } else {
+            // console.warn('One or more elements for typing effect not found. Typing effect aborted.');
+            if(contentElement) contentElement.style.display = 'block';
+          }
+        } else {
+          // console.log('Not on cover page or cover section not yet shown. Typing effect skipped.');
+        }
+      }, 100); 
+      next(html); 
+    });
+  } else {
+   console.error('Docsify or Docsify hooks not found. Typing effect cannot be initialized.');
+  }
   </script> 
   <style>
     body {
@@ -175,6 +222,33 @@
       flex-direction: column;
       min-height: 100vh; /* 关键：确保 body 至少撑满整个视口高度 */
       margin: 0; /* 推荐：移除 body 的默认外边距 */
+    }
+    /* Docsify 侧边栏切换按钮 (汉堡菜单) 样式调整 */
+    button.sidebar-toggle {
+      background-color: transparent !important; /* 移除默认的或主题带来的背景色 */
+      border: none !important; /* 移除边框 */
+      outline: none !important; /* 移除点击时的轮廓 */
+      padding: 12px; /* 可以按需调整内边距 */
+      position: fixed; /* 或者 absolute，取决于你希望它如何定位 */
+      top: 8px; /* 示例：距离顶部距离 */
+      left: 10px; /* 示例：距离左侧距离 */
+      z-index: 30; /* 确保在其他内容之上，但在展开的侧边栏之下 */
+    }
+
+    /* 汉堡菜单图标的线条颜色 */
+    button.sidebar-toggle .icon-bars {
+      background-color: #FFF !important; /* 假设你的页面背景是深色，线条用白色 */
+      /* 如果你的页面背景是浅色（比如截图中的浅绿色），线条颜色应该用深色 */
+      /* background-color: #333 !important; */ /* 例如深灰色线条 */
+    }
+
+    /* 当侧边栏打开时，汉堡菜单图标可能会变为关闭图标 (X) */
+    button.sidebar-toggle.open .icon-bars {
+      /* 关闭图标通常由两条线旋转构成，颜色与展开时一致 */
+      background-color: #FFF !important; /* 或者 #333 !important; */
+    }
+    html.is-showing-cover button.sidebar-toggle { /* Docsify 激活封面时会给 html 加 is-showing-cover 类 */
+      display: none !important;
     }
     /* 代码块和行内代码的字体设置: JetBrains Mono 优先，后备等宽字体 */
     /* .markdown-section 是 Docsify 主要内容区域的类名 */
@@ -479,7 +553,6 @@
         copy: '<span>我是@' + new Date().getFullYear() + ' LinChentang</span><br />', // 版权信息，支持HTML
         auth: '长风破浪会有时，直挂云帆济沧海！', // 作者或其他信息
         style: 'text-align: center;', // 页脚的CSS样式
-        pre: '<hr/>' // 在页脚内容之前插入的HTML，例如水平分割线
       },
       // markdown配置
       markdown: {
