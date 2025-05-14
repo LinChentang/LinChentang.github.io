@@ -6,8 +6,8 @@
   * [Academic](Me/Academic.md)
 
 * StudyNotes
-  * [DiveintoDeepLearning](StudyNotes/DiveintoDeepLearning/Notes/README.md)
-  * [MachineLearning](StudyNotes/MachineLearning/Notes/README.md)
+  * [Dive into Deep Learning](StudyNotes/DiveintoDeepLearning/Notes/README.md)
+  * [Machine Learning](StudyNotes/MachineLearning/Notes/README.md)
 
 * Follow Me
   * [Github](https://github.com/LinChentang)
