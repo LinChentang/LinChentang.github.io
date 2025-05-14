@@ -4,20 +4,35 @@
 <head>
   <meta charset="UTF-8">
   <title>LinChentang</title>
+  <link rel="manifest" href="manifest.json"> </head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <meta name="referrer" content="no-referrer" /> <link rel="shortcut icon" href="images/book.png" type="image/x-icon" />
-
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="referrer" content="no-referrer" />
+  <!-- 设置浏览器图标 -->
+  <link rel="shortcut icon" href="images/book.png" type="image/x-icon" />
   <style>
     body {
       /* 默认英文字体: Times New Roman, 默认中文字体: 宋体 (SimSun) */
       /* 浏览器会根据文字内容选择合适的字体。serif 是最后的衬线字体回退。*/
       font-family: "Times New Roman", Times, "SimSun", "宋体", serif;
       font-size: 16px;
+      /* 新增：设置全局默认字体大小为16px */
     }
-
-    /* 从 "字节飞扬" 示例中合并的 CSS 开始 */
-
+    /* 代码块和行内代码的字体: JetBrains Mono */
+    /* .markdown-section 是 Docsify 内容区域的常见类名 */
+    .markdown-section pre,
+    .markdown-section code,
+    pre,
+    /* 通用 pre 标签 */
+    code,
+    /* 通用 code 标签 */
+    kbd,
+    /* 表示键盘输入的标签 */
+    samp{
+    /* 表示程序输出示例的标签 */
+      font-family: "JetBrains Mono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    }
     /*加重描述strong*/
     .markdown-section strong {
       color: rgb(239, 112, 96);
@@ -64,53 +79,6 @@
       text-decoration: none;
     }
 
-    /*侧边栏样式*/
-    .sidebar {
-      padding-top: 6px;
-    }
-
-    aside.sidebar ul li {
-      margin: 0;
-      position: relative;
-    }
-
-    aside.sidebar ul li ul {
-      margin: 6px 0;
-    }
-
-    aside.sidebar ul li p { /* 通常是无链接的顶级分组标题 */
-      padding-left: 22px;
-      font-size: 18px;
-      font-weight: normal; /* 可根据需要调整为 bold */
-      margin-top: 10px;
-      margin-bottom: 5px;
-    }
-
-    aside.sidebar ul li a {
-      line-height: 35px;
-      font-size: 14px;
-      padding: 3px 0 3px 22px;
-    }
-
-    aside.sidebar ul li.active > a {
-      font-size: 16px !important;
-      font-weight: bold; /* 激活项加粗 */
-      color: var(--theme-color, #42b983); /* 使用主题颜色 */
-    }
-
-    aside.sidebar ul li.active > a:before {
-      content: '' !important;
-      position: absolute !important;
-      margin: 0 !important;
-      width: 10px !important;
-      height: 10px !important;
-      top: 15px !important; /* 可能需要微调垂直位置 */
-      left: 0px !important;
-      border-radius: 50% !important;
-      background-color: var(--theme-color, #fed24a) !important; /* 使用主题颜色或指定颜色 */
-      box-shadow: 0 0 0 3px var(--theme-color-light, rgba(254, 210, 74, 0.4)) !important; /* 阴影也用主题色相关颜色 */
-    }
-
     /*特定级别标题内 <span> 标签的颜色 (您需要在Markdown中为标题内文本添加span标签)*/
     /* 例如：## <span>我的二级标题</span> */
     #main h2 span{ color:#18b566 !important; }
@@ -121,7 +89,6 @@
     .markdown-section tr:nth-child(1n) { /* 表格所有行 */
       font-size: 16px !important;
     }
-
     .markdown-section h1 {
       margin: 3rem 0 2rem 0;
     }
@@ -186,7 +153,6 @@
       border-bottom-left-radius: 5px; /* 配合 pre 的圆角 */
       border-bottom-right-radius: 5px;
     }
-
     ol, ul { /* 列表样式 */
       line-height: 1.8 !important; /* 增加行高 */
     }
@@ -247,46 +213,26 @@
     a.section-link{ /* 标题旁的锚点链接 */
       font-size: .9rem !important;
     }
-
-    /* 滚动条样式 (被注释掉了，您可以取消注释以启用) */
-    /*
-    ::-webkit-scrollbar{width:8px;}
-    ::-webkit-scrollbar-thumb{
-      background: #007be8; // 使用 themeColor
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f0f0f0;
-    }
-    */
-
-    /* 从 "字节飞扬" 示例中合并的 CSS 结束 */
   </style>
 </head>
 
 <body>
+  <!-- 定义加载时候的动作 -->
   <div id="app">加载中...</div>
-
-  <div class="aside_container">
-    </div>
-
   <script>
     // PDF 嵌入边距变量 (如果 markdown.renderer.code 中使用了它们)
     var PDF_MARGIN_TOP = '20px';
     var PDF_MARGIN_BOTTOM = '20px';
-
     window.$docsify = {
       // 项目名称
       name: 'LinChentang',
-      nameLink: 'https://github.com/LinChentang', 
+      nameLink: 'https://github.com/LinChentang',
       // 仓库地址，点击右上角的Github章鱼猫头像会跳转到此地址
       repo: 'https://github.com/LinChentang/LinChentang.github.io',
-      themeColor: '#007be8', // 新增：主题颜色
       // 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
       loadSidebar: true,
       // 封面支持，默认加载的是项目根目录下的_coverpage.md文件
       coverpage: true,
-      onlyCover: true, // 新增：首页只显示封面
       // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
       loadNavbar: true,
       // 最大支持渲染的标题层级
@@ -296,14 +242,13 @@
       // docsify-sidebar-collapse 插件配置
       sidebarCollapsible: {
         collapseDepth: 1,
-        autoClose: true, // 您将其改为了 true
+        autoClose: true,
         unfoldAll: false
       },
       // 小屏设备下合并导航栏到侧边栏
-      mergeNavbar: false, // "字节飞扬" 中为 true，您可以按需调整
+      mergeNavbar: true,
       // 切换页面后是否自动跳转到页面顶部
       auto2top: true,
-      externalLinkTarget: '_blank', // 新增：外部链接在新标签页打开
       // 是否使用相对路径
       relativePath: false,
       // 侧边栏中出现的网站图标
@@ -321,6 +266,8 @@
         const minute = ('0' + d.getMinutes()).slice(-2);
         return `${year}.${month}.${day} ${hour}:${minute}`;
       },
+      // 一个语言列表
+      //fallbackLanguages: ['fr', 'de'],
       // 找不到指定页面时加载
       notFoundPage: true,
       // 字数统计
@@ -330,14 +277,16 @@
         color: 'rgb(90,90,90)',
         language: 'chinese'
       },
-      //搜索 (已是清理后的版本)
+      //搜索
       search: {
-        maxAge: 86400000,
-        paths: 'auto',
+        maxAge: 86400000,// 过期时间，单位毫秒，默认一天
+        paths: 'auto',// 注意：仅适用于 paths: 'auto' 模式
+        // 支持本地化
         placeholder: {
           '/zh-cn/': '搜索',
           '/': 'Type to search'
         },
+        // 支持本地化
         noData: {
           '/zh-cn/': '找不到结果',
           '/': 'No Results'
@@ -348,12 +297,12 @@
       },
       // 页脚配置 (配合 docsify-footer-enh 插件)
       footer: {
-        copy: '<span>Copyright &copy; ' + new Date().getFullYear() + ' LinChentang</span>', 
-        auth: 'nicha。', 
+        copy: '<span>你好呀; ' + new Date().getFullYear() + ' LinChentang</span>', 
+        auth: '学习是我进步', 
         style: 'text-align: center;',
         pre: '<hr/>'
       },
-      // markdown配置 (使用 "字节飞扬" 的版本，增强 DOT 和 PDF 处理)
+      // markdown配置
       markdown: {
         renderer: {
           code: function(code, lang, base=null) {
@@ -366,7 +315,6 @@
               }
             }
 
-            // PDF渲染逻辑 (来自 "字节飞扬" 示例)
             var pdf_renderer = function(code, lang, verify) {
               function unique_id_generator(){
                 function rand_gen(){
@@ -408,18 +356,34 @@
           }
         }
       }
-    };
+    }
   </script>
+  <!-- 主题 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
+  <!-- docsify的js依赖 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-  
+  <!-- emoji表情支持 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <!-- 图片放大缩小支持 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <!-- 搜索功能支持 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!--在所有的代码块上添加一个简单的Click to copy按钮来允许用户从你的文档中轻易地复制代码-->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- docsify-sidebar-collapse插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <!-- 字数统计 -->
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
-
+  <!-- 支持 DOT 语言 -->
+  <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/viz.js"></script>
+  <!-- 支持 LaTex 语言 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+  <!-- 添加 PDF 页面展示功能 -->
+  <!-- PDFObject.js is a required dependency of this plugin -->
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/pdfobject.min.js"></script>
+  <!-- This is the source code of the pdf embed plugin -->
+  <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/docsify-pdf-embed.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/jquery.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/jquery.goup.js"></script>
   <script type="text/javascript">
@@ -435,7 +399,6 @@
       });
     }
   </script>
-
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1/dist/docsify-tabs.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/docsify-footer-enh.min.js"></script>
@@ -448,7 +411,7 @@
   
   <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('pwa.js') // TODO: 您需要创建和配置 pwa.js 文件
+      navigator.serviceWorker.register('pwa.js') 
         .then(function(registration) {
           console.log('Service Worker registered with scope:', registration.scope);
         }).catch(function(error) {
@@ -456,19 +419,20 @@
         });
     }
   </script>
-
+  <!-- 支持数学公式 -->
   <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+      MathJax.Hub.Config({
       tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
       TeX: {
-        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
-        extensions: ['extpfeil.js', 'mediawiki-texvc.js'], // 确保这些扩展在您的 MathJax 版本中可用
-        Macros: {bm: "\\boldsymbol"}
+      equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+      extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+      Macros: {bm: "\\boldsymbol"}
       },
       'HTML-CSS': { linebreaks: { automatic: true } },
       SVG: { linebreaks: { automatic: true } }
-    });
+      });
   </script>
   <script src="https://mathjax.cnblogs.com/2_7_5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;v=20200504"></script>
 </body>
+
 </html>
