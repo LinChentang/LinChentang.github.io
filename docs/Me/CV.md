@@ -24,8 +24,9 @@
     <td style="border: none; text-align: left;">
       <h1 style="margin-top: 0; text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 5px;">Research Interest</h1>
       <ul style="text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 14px; margin-top: 5px; padding-bottom: 5px; margin-bottom:5px;">
-        <li style="margin-bottom: 5px;">
-        Audio Codec Model (Audio Tokenizer)</li>
+        <li>Research on Large Language Models</li>
+        <li>Embodied Intelligence</li>
+        <li>Embedded Development</li>
         </ul>
     </td>
   </tr>
@@ -37,8 +38,8 @@
     <td style="border: none; text-align: left;">
       <h1 style="margin-top: 0; text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 5px;">Honors and Awards</h1>
       <ul style="text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 14px; margin-top: 5px; padding-bottom: 5px; margin-bottom:5px;">
-        <li style="margin-bottom: 5px;">
-        2024, Stars of Tomorrow, Microsoft Research Asia.</li>
+        <li>2025, Outstanding Graduates of Beijing.</li>
+        <li>2025, Outstanding Graduate of Beijing Union University.</li>
         </ul>
     </td>
   </tr>
