@@ -82,12 +82,6 @@
       /* max-height: 150px; */
       margin-bottom: 20px; /* 图片下方的间距 */
     }
-    /* 针对封面上的主标题 H1 */
-    section.cover h1 {
-      margin-top: 0; /* 移除或调整标题上方的默认间距 */
-      margin-bottom: 15px; /* 标题下方的间距 */
-      font-size: 2.5em; /* 调整标题大小 (示例) */
-    }
     /* 针对封面上的引用 blockquote */
     section.cover blockquote {
       font-size: 1.2em; /* 调整引用文字大小 (示例) */
@@ -130,86 +124,6 @@
       transform: translateY(-2px);
     }
   </style>
-  <script>
-  function typeEffect(element, text, speed, onCharTyped, onFinished) {
-    if (!element) {
-      // console.error('TypeEffect Error: Target element not found for text: "' + text + '"');
-      if (onFinished) onFinished();
-      return;
-    }
-    let i = 0;
-    element.innerHTML = ''; 
-  
-    if (element.classList) {
-      element.classList.remove('typing-done');
-    }
-
-    function typing() {
-      if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        i++;
-        if (onCharTyped) onCharTyped(element);
-        setTimeout(typing, speed);
-      } else {
-        if (element.classList && typeof element.classList.add === 'function') {
-          element.classList.add('typing-done'); 
-        }
-        if (onFinished) onFinished(); 
-      }
-    }
-    typing();
-  }
-
-  if (window.docsify && window.docsify.hooks) {
-    docsify.hooks.doneEach(function(html, next) {
-      // console.log('Docsify doneEach hook fired. Current route path:', docsify.route.path, 'Is cover:', docsify.getState().isCover);
-
-      setTimeout(function() {
-        const isCoverActive = !!document.querySelector('section.cover.show');
-      
-        if (isCoverActive) {
-          // console.log('Cover page is active and section.cover.show found.');
-
-          const titleElement = document.getElementById('typing-title');
-          const quoteElement = document.getElementById('typing-quote');
-          const contentElement = document.getElementById('cover-links-and-button'); // 确保这个ID与 _coverpage.md 中一致
-          // console.log('titleElement:', titleElement);
-          // console.log('quoteElement:', quoteElement);
-          // console.log('contentElement:', contentElement);
-
-          const titleText = "LinChentang";
-          const quoteText = "永远相信美好的事情即将发生！";
-          const typingSpeed = 120; 
-
-          if (titleElement && quoteElement && contentElement) {
-            // console.log('All elements for typing effect found. Initializing...');
-          
-            titleElement.innerHTML = '';
-            quoteElement.innerHTML = '';
-            contentElement.style.display = 'none';
-
-            typeEffect(titleElement, titleText, typingSpeed, null, function() {
-              // console.log('Title typing finished.');
-              typeEffect(quoteElement, quoteText, typingSpeed, null, function() {
-              // console.log('Quote typing finished.');
-                contentElement.style.display = 'block'; 
-                // console.log('Rest of the cover content displayed.');
-              });
-            });
-          } else {
-            // console.warn('One or more elements for typing effect not found. Typing effect aborted.');
-            if(contentElement) contentElement.style.display = 'block';
-          }
-        } else {
-          // console.log('Not on cover page or cover section not yet shown. Typing effect skipped.');
-        }
-      }, 100); 
-      next(html); 
-    });
-  } else {
-   console.error('Docsify or Docsify hooks not found. Typing effect cannot be initialized.');
-  }
-  </script> 
   <style>
     body {
       /* 默认英文字体: Times New Roman, 默认中文字体: 宋体 (SimSun) */
@@ -228,10 +142,10 @@
       background-color: transparent !important; /* 移除默认的或主题带来的背景色 */
       border: none !important; /* 移除边框 */
       outline: none !important; /* 移除点击时的轮廓 */
-      padding: 12px; /* 可以按需调整内边距 */
-      position: fixed; /* 或者 absolute，取决于你希望它如何定位 */
-      top: 8px; /* 示例：距离顶部距离 */
-      left: 10px; /* 示例：距离左侧距离 */
+      padding: 10px; /* 可以按需调整内边距 */
+      /*position: fixed; /* 或者 absolute，取决于你希望它如何定位 */
+      /*top: 8px; /* 示例：距离顶部距离 */
+      /*left: 10px; /* 示例：距离左侧距离 */
       z-index: 30; /* 确保在其他内容之上，但在展开的侧边栏之下 */
     }
 
@@ -268,14 +182,17 @@
       width: 100%;          /* 页脚宽度占满整个视口宽度 */
       background-color: #ffffff; /* 页脚背景色，建议设置为与页面背景或主题协调的颜色，以遮盖下方滚动的内容 */
       z-index: 100;         /* 设置一个较高的层叠顺序，确保页脚在其他内容之上 */
-      border-top: 1px solid #eaeaea; /* 在页脚顶部添加一条分割线，使其与内容区域分开 */
       padding: 10px 0;      /* 给页脚内容上下添加一些内边距 */
       flex-shrink: 0; /* 防止页脚在内容过多时被压缩 */
       /* 您在 $docsify.footer.style 中设置的 "text-align: center;" 仍然会对其内部文本生效 */
     }
     #app {
       flex-grow: 1; /* 关键：让 #app 占据所有可用的垂直空间 */
-    /* 如果 ,Docsify 渲染后 #app 内部的 .content 或其他元素导致宽度问题，可能需要 width: 100%; */
+      display: flex;
+      /* 如果 ,Docsify 渲染后 #app 内部的 .content 或其他元素导致宽度问题，可能需要 width: 100%; */
+    }
+    footer.docsify-footer-enh, footer {
+      flex-shrink: 0; /* 页脚不收缩 */
     }
     /* Markdown内容区 strong 标签 (加粗文本) 的颜色 */
     .markdown-section strong {
@@ -553,6 +470,7 @@
         copy: '<span>我是@' + new Date().getFullYear() + ' LinChentang</span><br />', // 版权信息，支持HTML
         auth: '长风破浪会有时，直挂云帆济沧海！', // 作者或其他信息
         style: 'text-align: center;', // 页脚的CSS样式
+        pre: '<hr/>'
       },
       // markdown配置
       markdown: {
@@ -682,6 +600,86 @@
       });
   </script>
   <script src="https://mathjax.cnblogs.com/2_7_5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;v=20200504"></script>
+  <script>
+  function typeEffect(element, text, speed, onCharTyped, onFinished) {
+    if (!element) {
+      // console.error('TypeEffect Error: Target element not found for text: "' + text + '"');
+      if (onFinished) onFinished();
+      return;
+    }
+    let i = 0;
+    element.innerHTML = ''; 
+  
+    if (element.classList) {
+      element.classList.remove('typing-done');
+    }
+
+    function typing() {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        if (onCharTyped) onCharTyped(element);
+        setTimeout(typing, speed);
+      } else {
+        if (element.classList && typeof element.classList.add === 'function') {
+          element.classList.add('typing-done'); 
+        }
+        if (onFinished) onFinished(); 
+      }
+    }
+    typing();
+  }
+
+  if (window.docsify && window.docsify.hooks) {
+    docsify.hooks.doneEach(function(html, next) {
+      // console.log('Docsify doneEach hook fired. Current route path:', docsify.route.path, 'Is cover:', docsify.getState().isCover);
+
+      setTimeout(function() {
+        const isCoverActive = !!document.querySelector('section.cover.show');
+      
+        if (isCoverActive) {
+          // console.log('Cover page is active and section.cover.show found.');
+
+          const titleElement = document.getElementById('typing-title');
+          const quoteElement = document.getElementById('typing-quote');
+          const contentElement = document.getElementById('cover-links-and-button'); // 确保这个ID与 _coverpage.md 中一致
+          // console.log('titleElement:', titleElement);
+          // console.log('quoteElement:', quoteElement);
+          // console.log('contentElement:', contentElement);
+
+          const titleText = "LinChentang";
+          const quoteText = "永远相信美好的事情即将发生！";
+          const typingSpeed = 120; 
+
+          if (titleElement && quoteElement && contentElement) {
+            // console.log('All elements for typing effect found. Initializing...');
+          
+            titleElement.innerHTML = '';
+            quoteElement.innerHTML = '';
+            contentElement.style.display = 'none';
+
+            typeEffect(titleElement, titleText, typingSpeed, null, function() {
+              // console.log('Title typing finished.');
+              typeEffect(quoteElement, quoteText, typingSpeed, null, function() {
+              // console.log('Quote typing finished.');
+                contentElement.style.display = 'block'; 
+                // console.log('Rest of the cover content displayed.');
+              });
+            });
+          } else {
+            // console.warn('One or more elements for typing effect not found. Typing effect aborted.');
+            if(contentElement) contentElement.style.display = 'block';
+          }
+        } else {
+          // console.log('Not on cover page or cover section not yet shown. Typing effect skipped.');
+        }
+      }, 100); 
+      next(html); 
+    });
+  } else {
+   console.error('Docsify or Docsify hooks not found. Typing effect cannot be initialized.');
+  }
+  </script> 
 </body>
 
 </html>
