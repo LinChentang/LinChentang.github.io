@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<>
+<head>
   <meta charset="UTF-8">
   <title>LinChentang</title>
   <link rel="manifest" href="manifest.json">
@@ -14,204 +14,202 @@
   <style>
     body {
       /* 默认英文字体: Times New Roman, 默认中文字体: 宋体 (SimSun) */
-      /* 浏览器会根据文字内容选择合适的字体。serif 是最后的衬线字体回退。*/
+      /* 浏览器会根据文字内容从左到右依次尝试使用字体，serif 是最后的通用衬线字体回退。*/
       font-family: "Times New Roman", Times, "SimSun", "宋体", serif;
-      font-size: 16px;
-      /* 新增：设置全局默认字体大小为16px */
+      font-size: 16px; /* 设置全局基础字体大小为16像素 */
     }
-    /* 代码块和行内代码的字体: JetBrains Mono */
-    /* .markdown-section 是 Docsify 内容区域的常见类名 */
-    .markdown-section pre,
-    .markdown-section code,
-    pre,
-    /* 通用 pre 标签 */
-    code,
-    /* 通用 code 标签 */
-    kbd,
-    /* 表示键盘输入的标签 */
-    samp{
-    /* 表示程序输出示例的标签 */
-      font-family: "JetBrains Mono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    /* 代码块和行内代码的字体设置: JetBrains Mono 优先，后备等宽字体 */
+    /* .markdown-section 是 Docsify 主要内容区域的类名 */
+    .markdown-section pre,    /* Markdown内容区的预格式化文本块 (通常用于代码块) */
+    .markdown-section code,   /* Markdown内容区的行内代码 */
+    pre,                      /* 全局的预格式化文本块 */
+    code,                     /* 全局的行内代码 */
+    kbd,                      /* 表示用户键盘输入的标签 */
+    samp                      /* 表示程序或脚本输出示例的标签 */
+    {
+      font-family: "JetBrains Mono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* 指定代码字体栈 */
     }
-    /*加重描述strong*/
+    /* Markdown内容区 strong 标签 (加粗文本) 的颜色 */
     .markdown-section strong {
       color: rgb(239, 112, 96);
     }
-
-    /* 注意: .app-nav 的样式可能需要您自定义 _navbar.md 以匹配其HTML结构 */
-    .app-nav{
-      position: fixed;
-      margin: 0;
-      padding: 10px 0 10px 0;/*上、右、下、左*/
-      width: calc(100% - 325px); /* 这可能需要根据您的侧边栏宽度调整 */
-      background-color: #fff;
-      height: 55px;
-      border-bottom: 1px solid #eee;
-      z-index: 10; /* 确保导航栏在内容之上 */
-    }
-
-    /* 行内代码样式 */
+    /* Markdown内容区行内代码 `code` 的样式 */
     .markdown-section code {
-      border-radius: 2px;
-      /* "字节飞扬" 使用了不同的字体栈，这里采用它的 */
-      font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
-      font-size: 16px !important; /* 确保覆盖 Docsify 默认主题的字体大小 */
-      margin: 0 2px;
-      padding: 3px 5px;
-      white-space: nowrap;
-      border: 1px solid #eee; /* 添加一个细边框以区分 */
-      background-color: #f8f8f8; /* 添加浅色背景 */
-      color: #e96900; /* 设置特定颜色 */
+      border-radius: 2px; /* 轻微圆角 */
+      font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif; /* 行内代码使用不同于代码块的字体栈 */
+      font-size: 16px !important; /* 使用 !important 确保覆盖主题默认字体大小 */
+      margin: 0 2px; /* 左右外边距 */
+      padding: 3px 5px; /* 内边距 */
+      white-space: nowrap; /* 防止行内代码自动换行 */
+      border: 1px solid #eee; /* 细边框 */
+      background-color: #f8f8f8; /* 浅色背景 */
+      color: #e96900; /* 文字颜色 */
     }
 
-    /* p内联代码的特定背景色，如果需要 */
+    /* Markdown内容区段落 `p` 内的行内代码 `code` 的特定样式 */
     .markdown-section p code {
-      background-color: #f9f2f4 !important; /* 与 "字节飞扬" 保持一致或调整 */
-      color: #c7254e; /* 与 "字节飞扬" 保持一致或调整 */
+      background-color: #f9f2f4 !important; /* 背景色 */
+      color: #c7254e !important; /* 文字颜色 */
     }
 
+    /* Markdown内容区中直接子元素 `div` 下的图片 `img`，以及 `pre` (代码块) 的样式 */
     .markdown-section > div > img, .markdown-section pre {
-      box-shadow: 2px 2px 10px 4px rgba(0,0,0,0.05) !important; /* 调整了阴影使其更柔和 */
-      border-radius: 5px; /* 为图片和代码块统一添加圆角 */
+      box-shadow: 2px 2px 10px 4px rgba(0,0,0,0.05) !important; /* 阴影效果，更柔和 */
+      border-radius: 5px; /* 圆角 */
     }
 
+    /* Markdown内容区链接 `a` 在非鼠标悬停状态下，移除下划线 */
     .markdown-section a:not(:hover) {
       text-decoration: none;
     }
 
-    /*特定级别标题内 <span> 标签的颜色 (您需要在Markdown中为标题内文本添加span标签)*/
-    /* 例如：## <span>我的二级标题</span> */
-    #main h2 span{ color:#18b566 !important; }
-    #main h3 span{ color:#089acc !important; }
-    #main h4 span{ color:#FF9700 !important; }
+    /* 特定级别标题内 `<span>` 标签的颜色 */
+    /* 您需要在Markdown中为标题内的文本添加span标签才能使这些规则生效，例如：## <span>我的二级标题</span> */
+    #main h2 span{ color:#18b566 !important; } /* id为main的元素内h2标题下的span */
+    #main h3 span{ color:#089acc !important; } /* id为main的元素内h3标题下的span */
+    #main h4 span{ color:#FF9700 !important; } /* id为main的元素内h4标题下的span */
 
+    /* Markdown内容区提示块 `p.tip` 和所有表格行 `tr` 的字体大小 */
     .markdown-section p.tip,
-    .markdown-section tr:nth-child(1n) { /* 表格所有行 */
+    .markdown-section tr:nth-child(1n) { /* nth-child(1n) 选中所有行 */
       font-size: 16px !important;
     }
+
+    /* Markdown内容区 h1 和 h2 标题的外边距调整 */
     .markdown-section h1 {
-      margin: 3rem 0 2rem 0;
+      margin: 3rem 0 2rem 0; /* 上3rem，下2rem，左右0 */
     }
-
     .markdown-section h2 {
-      margin: 2rem 0 1rem;
+      margin: 2rem 0 1rem; /* 上2rem，下1rem，左右0 */
     }
 
-    /*代码块复制按钮样式*/
+    /* Docsify代码块复制按钮 (docsify-copy-code插件) 的样式 */
     .docsify-copy-code-button {
-      background: #007be8 !important; /* 使用了 "字节飞扬" 的 themeColor */
-      color: #FFFFFF !important;
-      font-size: 13px !important;
-      border-radius: 3px;
+      background: #007be8 !important; /* 背景色，与Docsify配置中的themeColor一致 */
+      color: #FFFFFF !important; /* 文字颜色 */
+      font-size: 13px !important; /* 字体大小 */
+      border-radius: 3px; /* 圆角 */
     }
 
-    .docsify-copy-code-button::after{ /* 复制成功后的提示文字 */
-      color: #FFFFFF !important; /* 与按钮文字颜色一致或稍作区分 */
+    /* 复制成功后显示的提示文字 ("Copied!") 的样式 */
+    .docsify-copy-code-button::after{
+      color: #FFFFFF !important;
       font-size: 13px !important;
     }
     
+    /* Markdown内容区直接子元素 `p` (段落) 的样式 */
     .markdown-section > p {
-      font-size: 16px !important;
-      line-height: 1.8; /* 增加段落行高以提高可读性 */
+      font-size: 16px !important; /* 字体大小 */
+      line-height: 1.8; /* 行高，增加段落可读性 */
     }
 
-    /*代码块头部图标 start*/
+    /* 代码块头部装饰图标 开始 */
+    /* 为Markdown内容区的pre标签(代码块)的上方添加一个伪元素作为头部 */
     .markdown-section pre:before {
-      content: '';
-      display: block;
-      background: url(https://gitee.com/wugenqiang/PictureBed/raw/master/images01/20200716201955.png); /* 这是 "字节飞扬" 的图标 */
-      height: 30px;
-      width: 100%; /* 确保背景条充满 pre 的宽度 */
-      background-size: 40px; /* 图标本身大小 */
-      background-repeat: no-repeat;
-      background-color: #2d2d2d; /* 深色背景条 */
-      background-position: 10px center; /* 图标位置 */
-      border-top-left-radius: 5px; /* 配合 pre 的圆角 */
-      border-top-right-radius: 5px;
+      content: ''; /* 伪元素必须有content属性 */
+      display: block; /* 使其表现为块级元素 */
+      background: url(https://gitee.com/wugenqiang/PictureBed/raw/master/images01/20200716201955.png); /* 背景图片URL (Mac风格的三个控制按钮图标) */
+      height: 30px; /* 头部条的高度 */
+      width: 100%; /* 宽度撑满pre标签 */
+      background-size: 40px; /* 背景图片本身的大小 */
+      background-repeat: no-repeat; /* 背景图片不重复 */
+      background-color: #2d2d2d; /* 头部条的背景色 */
+      background-position: 10px center; /* 背景图片的位置 (左边距10px，垂直居中) */
+      border-top-left-radius: 5px; /* 左上圆角，以匹配代码块的圆角 */
+      border-top-right-radius: 5px; /* 右上圆角 */
     }
-    /*代码块头部图标 end*/
+    /* 代码块头部装饰图标 结束 */
 
-    /* 代码块内部代码样式 */
-    .markdown-section pre { /* pre 标签本身 */
+    /* 代码块 `pre` 标签本身的样式 */
+    .markdown-section pre {
       background-color: #212121 !important; /* 整体背景色 */
-      padding: 0 !important; /* 移除 Docsify 默认的 padding，因为头部图标和内部 code 会处理 */
-      border-radius: 5px; /* 确保 pre 有圆角 */
+      padding: 0 !important; /* 移除Docsify默认的padding，因为头部图标和内部code元素会自行处理间距 */
+      border-radius: 5px; /* 确保pre标签有圆角 */
     }
 
+    /* 代码块内部的 `code` 标签 (实际代码内容) 的样式 */
     .markdown-section pre > code {
-      color: #c0c3c1 !important;
-      font-family: "JetBrains Mono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important; /* 统一使用您的代码字体 */
-      background-color: #212121 !important; /* 确保与 pre 背景一致或透明 */
-      font-size: 15px !important;
-      white-space: pre !important;
-      line-height: 1.6 !important;
-      -moz-tab-size: 4 !important;
-      -o-tab-size: 4 !important;
-      tab-size: 4 !important;
-      padding: 15px 20px !important; /* 在 pre:before 的高度之下开始，并提供左右padding */
-      display: block; /* 确保 code 块充满 pre (除头部外) */
-      border-bottom-left-radius: 5px; /* 配合 pre 的圆角 */
-      border-bottom-right-radius: 5px;
-    }
-    ol, ul { /* 列表样式 */
-      line-height: 1.8 !important; /* 增加行高 */
-    }
-    ol li, ul li { /* 列表项字体大小 */
-        font-size: 16px !important;
+      color: #c0c3c1 !important; /* 代码文字颜色 */
+      font-family: "JetBrains Mono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important; /* 统一使用您为代码块选择的字体栈 */
+      background-color: #212121 !important; /* 背景色，应与pre标签一致或设为透明 */
+      font-size: 15px !important; /* 字体大小 */
+      white-space: pre !important; /* 保留代码中的空白符和换行 */
+      line-height: 1.6 !important; /* 行高 */
+      -moz-tab-size: 4 !important; /* Firefox浏览器中tab字符的宽度等于4个空格 */
+      -o-tab-size: 4 !important;  /* Opera浏览器中tab字符的宽度 */
+      tab-size: 4 !important;     /* 标准CSS属性，tab字符宽度 */
+      padding: 15px 20px !important; /* 内边距，确保代码内容在头部图标下方开始，并有左右间距 */
+      display: block; /* 使其表现为块级元素，以便正确应用padding并充满pre的剩余空间 */
+      border-bottom-left-radius: 5px; /* 左下圆角 */
+      border-bottom-right-radius: 5px; /* 右下圆角 */
     }
 
+    /* 有序列表 (ol) 和无序列表 (ul) 的样式 */
+    ol, ul {
+      line-height: 1.8 !important; /* 行高，增加可读性 */
+    }
+    /* 列表项 (li) 的字体大小 */
+    ol li, ul li {
+      font-size: 16px !important;
+    }
+
+    /* 响应式布局：当屏幕宽度大于等于600px时应用的样式 */
     @media (min-width:600px) {
       .markdown-section pre > code {
-        font-size: 15px !important;
-        letter-spacing: 0.5px !important; /* 稍微调整字间距 */
+        font-size: 15px !important; /* 字体大小 */
+        letter-spacing: 0.5px !important; /* 轻微增加字间距 */
       }
     }
+    /* 响应式布局：当屏幕宽度小于等于600px时应用的样式 (通常为移动设备优化) */
     @media (max-width:600px) {
       .markdown-section pre > code {
-        padding: 10px 12px !important; /* 移动端减少 padding */
-        font-size: 14px !important; /* 移动端稍小字体 */
+        padding: 10px 12px !important; /* 减小代码块内边距 */
+        font-size: 14px !important; /* 减小代码块字体大小 */
       }
-      .markdown-section pre:before { /* 移动端头部图标区域调整 */
+      .markdown-section pre:before { /* 调整代码块头部图标区域 */
         height: 25px;
         background-size: 30px;
         background-position: 8px center;
       }
-      /*代码块复制按钮在小屏幕下可以考虑隐藏或调整样式*/
-       .docsify-copy-code-button {
-         /* display: none; */ /* 如果想隐藏 */
-         font-size: 12px !important;
-         padding: 3px 6px !important;
-         right: 3px !important;
-         top: 3px !important;
-       }
+      /* 代码块复制按钮在小屏幕下的样式调整 */
+      .docsify-copy-code-button {
+        /* display: none; */ /* 如果想在小屏幕上隐藏复制按钮，取消此行注释 */
+        font-size: 12px !important;
+        padding: 3px 6px !important;
+        right: 3px !important; /* 调整按钮位置，使其更靠近边缘 */
+        top: 3px !important;
+      }
     }
     
-    section.cover h1 { /* 封面页标题 */
-      margin: 0;
+    /* Docsify封面页 (coverpage) h1标题的样式 */
+    section.cover h1 {
+      margin: 0; /* 移除外边距 */
     }
 
-    .markdown-section { /* 主内容区域边距 */
+    /* Markdown主内容区域的左右外边距 */
+    .markdown-section {
       margin: 0 3.2% !important;
     }
 
-    /*PrismJS 语法高亮 Token 的颜色覆盖*/
-    .token.directive.keyword{ color: #4faee2 !important; }
-    .token.keyword{ color: #c678dd !important; }
-    .token.comment{ color: #737c8b !important; font-style: italic; } /* 注释也设为斜体 */
-    .token.tag{ color: #e06c75 !important; } /* 例如 HTML 标签 */
-    .token.attr-name{ color: #d19a66 !important; }
-    .token.attr-value{ color: #98c379 !important; }
-    .token.macro.property{ color: #4faee2 !important; }
-    .token.function{ color: #61afef !important; }
-    .token.string{ color: #98b755 !important; }
-    .token.punctuation{ color: #abb2bf !important; } /* 标点符号用浅色 */
-    .token.number{ color: #d19a66 !important; } /* 数字用与属性名类似的颜色 */
-    .token.operator { color: #56b6c2 !important; } /* 操作符 */
-    .token.boolean { color: #d19a66 !important; } /* 布尔值 */
+    /* PrismJS 语法高亮 Token 的颜色自定义覆盖 (美化代码高亮效果) */
+    .token.directive.keyword{ color: #4faee2 !important; } /* 例如C/C++中的#include等预处理指令 */
+    .token.keyword{ color: #c678dd !important; } /* 关键字，如 if, else, for, function等 */
+    .token.comment{ color: #737c8b !important; font-style: italic; } /* 注释，并设置为斜体 */
+    .token.tag{ color: #e06c75 !important; } /* HTML/XML中的标签名 */
+    .token.attr-name{ color: #d19a66 !important; } /* HTML/XML标签的属性名 */
+    .token.attr-value{ color: #98c379 !important; } /* HTML/XML标签的属性值 */
+    .token.macro.property{ color: #4faee2 !important; } /* 宏定义中的属性 */
+    .token.function{ color: #61afef !important; } /* 函数名 */
+    .token.string{ color: #98b755 !important; } /* 字符串 */
+    .token.punctuation{ color: #abb2bf !important; } /* 标点符号，如 {} () [] ; , */
+    .token.number{ color: #d19a66 !important; } /* 数字 */
+    .token.operator { color: #56b6c2 !important; } /* 操作符，如 + - * / = */
+    .token.boolean { color: #d19a66 !important; } /* 布尔值 true, false */
     .token.class-name { color: #e5c07b !important; } /* 类名 */
 
-    a.section-link{ /* 标题旁的锚点链接 */
-      font-size: .9rem !important;
+    /* Docsify 标题旁边自动生成的锚点链接 ("#") 的样式 */
+    a.section-link{
+      font-size: .9rem !important; /* 字体大小 */
     }
   </style>
 </head>
@@ -221,11 +219,12 @@
   <div id="app">加载中...</div>
   <script>
     // PDF 嵌入边距变量 (如果 markdown.renderer.code 中使用了它们)
-    var PDF_MARGIN_TOP = '20px';
-    var PDF_MARGIN_BOTTOM = '20px';
+    var PDF_MARGIN_TOP = '20px';  // PDF预览区域的上边距
+    var PDF_MARGIN_BOTTOM = '20px'; // PDF预览区域的下边距
     window.$docsify = {
       // 项目名称
       name: 'LinChentang',
+      // 项目名称的链接，点击名称时会跳转到此URL
       nameLink: 'https://github.com/LinChentang',
       // 仓库地址，点击右上角的Github章鱼猫头像会跳转到此地址
       repo: 'https://github.com/LinChentang/LinChentang.github.io',
@@ -246,7 +245,7 @@
         unfoldAll: false
       },
       // 小屏设备下合并导航栏到侧边栏
-      mergeNavbar: true,
+      mergeNavbar: false,
       // 切换页面后是否自动跳转到页面顶部
       auto2top: true,
       // 是否使用相对路径
@@ -258,13 +257,13 @@
       // 显示文档更新日期
       formatUpdated: function (time) {
         // 实现 '{YYYY}.{MM}.{DD} {HH}:{mm}' 格式
-        const d = new Date(time);
+        const d = new Date(time); // 将传入的时间戳或日期字符串转为Date对象
         const year = d.getFullYear();
-        const month = ('0' + (d.getMonth() + 1)).slice(-2);
+        const month = ('0' + (d.getMonth() + 1)).slice(-2); // 月份从0开始，所以+1；slice(-2)确保两位数
         const day = ('0' + d.getDate()).slice(-2);
         const hour = ('0' + d.getHours()).slice(-2);
         const minute = ('0' + d.getMinutes()).slice(-2);
-        return `${year}.${month}.${day} ${hour}:${minute}`;
+        return `${year}.${month}.${day} ${hour}:${minute}`; // 返回格式化后的字符串
       },
       // 一个语言列表
       //fallbackLanguages: ['fr', 'de'],
@@ -272,10 +271,10 @@
       notFoundPage: true,
       // 字数统计
       count: {
-        countable: true,
-        fontsize: '0.9em',
-        color: 'rgb(90,90,90)',
-        language: 'chinese'
+        countable: true,     // 是否启用统计功能
+        fontsize: '0.9em',   // 显示字数的字体大小
+        color: 'rgb(90,90,90)', // 字数文本的颜色
+        language: 'chinese'  // 字数统计的语言 (影响中文/英文单词的计算方式)
       },
       //搜索
       search: {
@@ -291,67 +290,72 @@
           '/zh-cn/': '找不到结果',
           '/': 'No Results'
         },
-        depth: 4,
-        hideOtherSidebarContent: false,
-        namespace: 'LinChentang',
+        depth: 4,              // 搜索时扫描文档标题的深度 (h1-h4)
+        hideOtherSidebarContent: false, // 搜索时是否隐藏侧边栏的其他内容 (通常保持false)
+        namespace: 'LinChentang', // 用于localStorage的命名空间，防止与其他Docsify站点冲突
       },
       // 页脚配置 (配合 docsify-footer-enh 插件)
       footer: {
-        copy: '<span>你好呀; ' + new Date().getFullYear() + ' LinChentang</span>', 
-        auth: '学习是我进步', 
-        style: 'text-align: center;',
-        pre: '<hr/>'
+        copy: '<span>我是@' + new Date().getFullYear() + ' LinChentang</span>', // 版权信息，支持HTML
+        auth: '长风破浪会有时，直挂云帆济沧海！', // 作者或其他信息
+        style: 'text-align: center;', // 页脚的CSS样式
+        pre: '<hr/>' // 在页脚内容之前插入的HTML，例如水平分割线
       },
       // markdown配置
       markdown: {
         renderer: {
-          code: function(code, lang, base=null) {
-            // DOT语言处理
+          // 自定义代码块的渲染函数
+          code: function(code, lang, base=null) { // code:代码内容, lang:语言标识, base:可选的基础渲染器
+            // 处理DOT语言 (Graphviz)
             if (lang === "dot") {
-              if (typeof Viz === 'function') { // 确保 Viz 函数存在
+              if (typeof Viz === 'function') { // 检查Viz.js是否已加载并可用
+                // 使用Viz.js将DOT代码渲染为SVG图形，并包裹在class为"viz"的div中
                 return ('<div class="viz">'+ Viz(code, "SVG")+'</div>');
               } else {
+                // 如果Viz.js未加载，返回错误提示
                 return '<pre>Error: Viz.js not loaded.</pre>';
               }
             }
 
+            // PDF渲染逻辑的辅助函数 (配合docsify-pdf-embed.js和PDFObject.js)
             var pdf_renderer = function(code, lang, verify) {
+              // 生成唯一ID的函数，用于PDF容器div
               function unique_id_generator(){
                 function rand_gen(){
                   return Math.floor((Math.random()+1) * 65536).toString(16).substring(1);
                 }
                 return rand_gen() + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + rand_gen() + rand_gen();
               }
-              // 确保 lang 存在再比较
+              // 检查语言标识是否为'pdf' (不区分大小写)
               if(lang && lang.toLowerCase() === 'pdf'){
-                if(verify){
-                  return true;
-                }else{
-                  var divId = "markdown_code_pdf_container_" + unique_id_generator().toString();
-                  var container_list = []; // 简化，避免潜在的 localStorage 问题，或按需保留
-                  // if(localStorage.getItem('pdf_container_list')){
-                  //    container_list = JSON.parse(localStorage.getItem('pdf_container_list'));
-                  // }
-                  container_list.push({"pdf_location": code, "div_id": divId});
-                  // localStorage.setItem('pdf_container_list', JSON.stringify(container_list)); // 按需保留
-
-                  // 确保 PDF_MARGIN_TOP 和 PDF_MARGIN_BOTTOM 已定义
+                if(verify){ // 如果是验证阶段 (插件可能会先调用一次来确认是否能处理)
+                  return true; // 返回true表示此渲染器可以处理pdf类型的代码块
+                }else{ // 如果是实际渲染阶段
+                  var divId = "markdown_code_pdf_container_" + unique_id_generator().toString(); // 为PDF容器生成唯一ID
+                  // 使用全局定义的PDF边距变量
                   var marginTop = typeof PDF_MARGIN_TOP !== 'undefined' ? PDF_MARGIN_TOP : '0px';
                   var marginBottom = typeof PDF_MARGIN_BOTTOM !== 'undefined' ? PDF_MARGIN_BOTTOM : '0px';
 
+                  // 返回一个带有唯一ID的div容器。
+                  // `docsify-pdf-embed.js`插件会查找这个ID，并将`code`(PDF路径)嵌入到此div中。
                   return (
                       '<div style="margin-top:'+ marginTop +'; margin-bottom:'+ marginBottom +';" id="'+ divId +'">'
-                      // + '<a href="'+ code + '"> Link </a> to ' + code // 原始链接，PDFObject会处理嵌入
+                      // PDF内容由插件通过JavaScript动态填充到这个div中
                       + '</div>'
                   );
                 }
               }
-              return false;
-            }
+              return false; // 如果语言不是pdf，则此渲染器不处理
+            };
+
+            // 如果pdf_renderer确认能处理此语言（即lang为pdf）
             if(pdf_renderer(code, lang, true)){
-              return pdf_renderer(code, lang, false);
+              return pdf_renderer(code, lang, false); // 则调用pdf_renderer进行实际渲染
             }
-            // 默认代码渲染
+            
+            // 如果不是DOT或PDF，则使用Docsify原始的代码渲染逻辑。
+            // `this.origin.code` 指向Docsify内置的或上一个被覆盖的code渲染函数。
+            // `apply(this, arguments)` 调用原始函数并传递相同的上下文和参数。
             return (base ? base : this.origin.code.apply(this, arguments));
           }
         }
@@ -388,13 +392,13 @@
   <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/jquery.goup.js"></script>
   <script type="text/javascript">
     // 确保在 jQuery 加载后再执行
-    if (typeof jQuery !== 'undefined') {
-      jQuery(document).ready(function () {
-        jQuery.goup({
-          trigger: 100,
-          bottomOffset: 52,
-          locationOffset: 25,
-          titleAsText: true
+    if (typeof jQuery !== 'undefined' && typeof jQuery.fn.goup === 'function') { // jQuery.fn.goup 检查插件是否正确加载到jQuery上
+      jQuery(document).ready(function () { // 等待整个DOM加载完成后执行
+        jQuery.goup({ // 初始化goup插件
+          trigger: 100,          // 页面向下滚动100像素后显示“回到顶部”按钮
+          bottomOffset: 52,      // 按钮距离页面底部的偏移量 (像素)
+          locationOffset: 25,    // 按钮距离页面右侧的偏移量 (像素)
+          titleAsText: true      // 如果设置了title属性，将其作为文本显示 (而不是HTML title提示)
         });
       });
     }
@@ -402,12 +406,12 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1/dist/docsify-tabs.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/docsify-footer-enh.min.js"></script>
   <script>
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('pwa.js') 
-        .then(function(registration) {
-          console.log('Service Worker registered with scope:', registration.scope);
-        }).catch(function(error) {
-          console.log('Service Worker registration failed:', error);
+    if (typeof navigator.serviceWorker !== 'undefined') { // 检查浏览器是否支持Service Worker API
+      navigator.serviceWorker.register('pwa.js') // 尝试注册名为pwa.js的Service Worker文件
+        .then(function(registration) { // 注册成功后的回调
+          console.log('Service Worker registered with scope:', registration.scope); // 在控制台打印成功信息和作用域
+        }).catch(function(error) { // 注册失败后的回调
+          console.log('Service Worker registration failed:', error); // 在控制台打印失败信息和错误对象
         });
     }
   </script>

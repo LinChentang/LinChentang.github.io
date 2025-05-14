@@ -1,11 +1,11 @@
 {
-  "name": "LinChentang 的文档网站",
+  "name": "LinChentang",
   "short_name": "LinChentang",
-  "description": "Linchentang的个人学习笔记和项目文档",
+  "description": "LinChentang",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": " ", 
+  "theme_color": "#007be8", 
   "orientation": "portrait-primary",
   "scope": "/",
   "icons": [
