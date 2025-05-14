@@ -1,12 +1,9 @@
 <!-- _coverpage.md -->
 ![logo](/images/book.png)
 
-# LinChentang
-
-> 永远相信美好的事情即将发生！
-
-- [个人简介](/Me/)
-- [学习笔记](/StudyNotes/)
-
-[开始使用 Let Go](/README.md)
-
+<h1 id="typing-title"></h1> <blockquote id=typing-quote></blockquote> <div id="cover-links" style="display: none;"> <ul>
+    <li><a href="/Me/">个人简介</a></li>
+    <li><a href="/StudyNotes/">学习笔记</a></li>
+  </ul>
+  <p><a href="/README.md">开始使用 Let Go</a></p>
+</div>
