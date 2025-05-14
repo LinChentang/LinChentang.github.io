@@ -12,11 +12,104 @@
   <!-- 设置浏览器图标 -->
   <link rel="shortcut icon" href="images/book.png" type="image/x-icon" />
   <style>
+    section.cover {
+      display: flex; /* 启用 Flexbox 布局 */
+      flex-direction: column; /* 让子元素垂直堆叠 */
+      align-items: center;    /* 在交叉轴上居中 (水平居中) */
+      justify-content: center; /* 在主轴上居中 (垂直居中) */
+      min-height: 100vh;      /* 使封面页至少占据整个视口的高度，这样垂直居中才有意义 */
+      text-align: center;     /* 确保 Flex 项内部的文本内容也居中 */
+      padding: 20px;          /* 给封面页添加一些内边距，避免内容过于贴近边缘 */
+      box-sizing: border-box; /* 让 padding 不会增加元素的总高度 (100vh) */
+      background: linear-gradient(to bottom right, #42b983, #2c3e50);
+      color: white; /* Ensure text is readable on the new background */
+    }
+    /* 确保封面页内的元素颜色适应新背景 (如果需要) */
+    section.cover h1, 
+    section.cover blockquote, 
+    section.cover ul li a {
+      color: white; /* Adjust text colors if background changes */
+    }
+    /* 为 blockquote 添加更明显的边框和内边距 */
+    section.cover blockquote {
+      border-left: 3px solid rgba(255, 255, 255, 0.8); /* 示例：半透明白色边框 */
+      padding-left: 15px;
+      margin-left: auto; /* 如果想让 blockquote 也居中 */
+      margin-right: auto;
+      max-width: 600px; /* 限制引用块的宽度，使其更易读 */
+    }
+    /* 针对封面上的链接列表 ul li a 的悬停效果 */
+    section.cover ul li a:hover {
+      color: #f0f0f0; /* 悬停时略微变亮 */
+      text-decoration: underline;
+    }
+    /* 为封面页内的直接子元素添加一些通用间距 (可选) */
+    section.cover > * { /* 选择 section.cover 的所有直接子元素 */
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    /* 针对封面上的 Logo 图片 */
+    section.cover img {
+      display: block; /* 使图片表现为块级元素，更容易控制 */
+      /* 您可以根据需要调整logo的大小，例如：*/
+      /* max-width: 150px; */
+      /* max-height: 150px; */
+      margin-bottom: 20px; /* 图片下方的间距 */
+    }
+    /* 针对封面上的主标题 H1 */
+    section.cover h1 {
+      margin-top: 0; /* 移除或调整标题上方的默认间距 */
+      margin-bottom: 15px; /* 标题下方的间距 */
+      font-size: 2.5em; /* 调整标题大小 (示例) */
+    }
+    /* 针对封面上的引用 blockquote */
+    section.cover blockquote {
+      font-size: 1.2em; /* 调整引用文字大小 (示例) */
+      margin-bottom: 30px; /* 引用下方的间距 */
+    }
+    /* 针对封面上的链接列表 ul */
+    section.cover ul {
+      list-style: none; /* 移除列表项前的默认项目符号 (小圆点) */
+      padding: 0;       /* 移除列表的默认内边距 */
+      margin-bottom: 40px; /* 列表下方的间距 */
+    }
+    section.cover ul li {
+      margin-bottom: 12px; /* 列表项之间的间距 */
+    }
+    section.cover ul li a {
+      font-size: 1.1em; /* 调整列表链接文字大小 (示例) */
+    }
+
+    /* 针对封面上的 "开始使用 Let Go" 按钮 */
+    /* Docsify 的主题 (如 vue.css) 通常会给封面页的最后一个链接p标签内的a标签应用按钮样式 */
+    /* 您可以通过更具体的选择器或直接用 !important 来覆盖它，或者添加新样式 */
+    section.cover .cover-main > p:last-child a {
+      /* 示例：您可以修改按钮的背景色、文字颜色、内边距、圆角等 */
+      background-color: rgba(255, 255, 255, 0.2); /* 示例：半透明背景按钮 */
+      color: white;
+      padding: 12px 28px;
+      border-radius: 25px; /* 更圆润的边角 */
+      font-size: 1.1em;
+      text-decoration: none; 
+      font-weight: bold;
+      display: inline-block; 
+      border: 1px solid rgba(255, 255, 255, 0.5); /* 可选的边框 */
+      transition: background-color 0.3s ease, transform 0.2s ease; 
+    }
+    section.cover .cover-main > p:last-child a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px); /* 轻微上浮效果 */
+    }
+  </style>
+  <style>
     body {
       /* 默认英文字体: Times New Roman, 默认中文字体: 宋体 (SimSun) */
       /* 浏览器会根据文字内容从左到右依次尝试使用字体，serif 是最后的通用衬线字体回退。*/
-      font-family: "Times New Roman", Times, "SimSun", "宋体", serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", "Microsoft YaHei", "微软雅黑", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
       font-size: 16px; /* 设置全局基础字体大小为16像素 */
+      /* 为了防止固定页脚遮挡页面底部的内容，需要给 body 增加一个底部的 padding */
+      /* 这个 padding 的值应该略大于您页脚的实际高度。您可以根据页脚内容和样式调整此值。*/
+      padding-bottom: 70px; /* 示例值，请根据您的页脚高度调整 */
     }
     /* 代码块和行内代码的字体设置: JetBrains Mono 优先，后备等宽字体 */
     /* .markdown-section 是 Docsify 主要内容区域的类名 */
@@ -28,6 +121,20 @@
     samp                      /* 表示程序或脚本输出示例的标签 */
     {
       font-family: "JetBrains Mono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* 指定代码字体栈 */
+    }
+    /* 针对 docsify-footer-enh 插件生成的 footer 元素 */
+    /* 如果插件生成的不是纯粹的 <footer> 标签，或者有特定的类名，您可能需要调整选择器 */
+    footer.docsify-footer-enh, /* 很多docsify页脚插件会使用这个类名或直接是footer标签 */
+    footer { /* 通用页脚标签，以防万一 */
+      position: fixed;      /* 将页脚的定位方式设置为固定定位 */
+      left: 0;              /* 页脚左边贴紧视口左边 */
+      bottom: 0;            /* 页脚底部贴紧视口底部 */
+      width: 100%;          /* 页脚宽度占满整个视口宽度 */
+      background-color: #ffffff; /* 页脚背景色，建议设置为与页面背景或主题协调的颜色，以遮盖下方滚动的内容 */
+      z-index: 100;         /* 设置一个较高的层叠顺序，确保页脚在其他内容之上 */
+      border-top: 1px solid #eaeaea; /* 在页脚顶部添加一条分割线，使其与内容区域分开 */
+      padding: 10px 0;      /* 给页脚内容上下添加一些内边距 */
+      /* 您在 $docsify.footer.style 中设置的 "text-align: center;" 仍然会对其内部文本生效 */
     }
     /* Markdown内容区 strong 标签 (加粗文本) 的颜色 */
     .markdown-section strong {
@@ -59,10 +166,16 @@
     }
 
     /* Markdown内容区链接 `a` 在非鼠标悬停状态下，移除下划线 */
-    .markdown-section a:not(:hover) {
-      text-decoration: none;
+    .markdown-section a {
+      color: var(--theme-color, #42b983); /* 链接颜色使用主题色或自定义 */
+      text-decoration: none; /* 默认无下划线，与你现有配置一致 */
+      transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out; /* 平滑过渡 */
     }
-
+    .markdown-section a:hover {
+      color: #2c8f62; /* 主题色的深色变体，或自定义悬停颜色 */
+      text-decoration: underline; /* 鼠标悬停时显示下划线 */
+       text-decoration-color: #2c8f62; /* 下划线颜色与文字一致 */
+    }
     /* 特定级别标题内 `<span>` 标签的颜色 */
     /* 您需要在Markdown中为标题内的文本添加span标签才能使这些规则生效，例如：## <span>我的二级标题</span> */
     #main h2 span{ color:#18b566 !important; } /* id为main的元素内h2标题下的span */
@@ -111,10 +224,10 @@
       background: url(https://gitee.com/wugenqiang/PictureBed/raw/master/images01/20200716201955.png); /* 背景图片URL (Mac风格的三个控制按钮图标) */
       height: 30px; /* 头部条的高度 */
       width: 100%; /* 宽度撑满pre标签 */
-      background-size: 40px; /* 背景图片本身的大小 */
+      background-size: auto 16px; /* 背景图片本身的大小 */
       background-repeat: no-repeat; /* 背景图片不重复 */
       background-color: #2d2d2d; /* 头部条的背景色 */
-      background-position: 10px center; /* 背景图片的位置 (左边距10px，垂直居中) */
+      background-position: 15px center; /* 背景图片的位置 (左边距10px，垂直居中) */
       border-top-left-radius: 5px; /* 左上圆角，以匹配代码块的圆角 */
       border-top-right-radius: 5px; /* 右上圆角 */
     }

@@ -46,6 +46,3 @@
 </table>
 
 
-<p style="text-align:center; font-size:small; color:#A0A0A0;">
-  Updating time: 2025.5.13
-</p>
