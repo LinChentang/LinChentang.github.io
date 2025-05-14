@@ -1,17 +1,23 @@
 {
   "name": "LinChentang 的文档网站",
   "short_name": "LinChentang",
-  "description": "林晨堂的个人学习笔记和项目文档",
+  "description": "Linchentang的个人学习笔记和项目文档",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#007be8", 
+  "theme_color": " ", 
   "orientation": "portrait-primary",
   "scope": "/",
   "icons": [
     {
-      "src": ".images/book.png", 
+      "src": "images/book.png", 
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any" 
+    },
+    {
+      "src": "images/book.png", 
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any" 
     }
