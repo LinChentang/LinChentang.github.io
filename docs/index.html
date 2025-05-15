@@ -64,6 +64,7 @@
       display: flex; /* 启用flex布局以便更好地控制内容对齐 */
       align-items: center; /* 垂直居中 */
       justify-content: center; /* 水平居中 */
+      text-align: center; /* 新增：让 section.cover 内的行内和行内块元素默认居中 */
     }
 
     /* 如果你在_coverpage.md的HTML外包裹了一个div，例如 <div id="custom-profile-cover"> */
@@ -75,7 +76,51 @@
       max-width: 900px; /* 限制内容最大宽度 */
       width: 90%; /* 响应式宽度 */
     }
+    /* 我们希望 .cover-main (如果存在) 或者 section.cover 内部的直接子元素块都居中其文本内容 */
+    section.cover .cover-main { /* Docsify vue.css 主题默认会用这个类名 */
+      /* 如果没有 .cover-main，这些样式可以直接应用到 section.cover 的子元素 */
+      display: flex; /* 使用 flex 布局让子元素垂直排列 */
+      flex-direction: column; /* 子元素垂直方向堆叠 */
+      align-items: center; /* 让 flex 子项（图片、标题、段落等）在交叉轴（水平方向）上居中 */
+    }
+    /* 如果图片不是直接居中，可以单独设置 */
+    section.cover img {
+      display: block; /* 让图片表现为块级元素 */
+      margin-left: auto; /* 配合 display: block 实现图片水平居中 */
+      margin-right: auto; /* 配合 display: block 实现图片水平居中 */
+      margin-bottom: 20px; /* 图片和下方文字的间距 */
+    }
 
+    /* 封面页的标题 h1, h2 (如果上面的 align-items: center 不够用或想更精确控制) */
+    section.cover h1,
+    section.cover h2 {
+      text-align: center; /* 确保标题文字居中 */
+      margin-top: 0.5em; /* 调整标题之间的间距 */
+      margin-bottom: 0.5em;
+    }
+
+    /* 封面页的段落和链接按钮 */
+    section.cover p {
+      text-align: center; /* 确保段落文字（包括链接按钮所在的段落）居中 */
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    /* 封面页上的链接按钮样式 (Docsify 默认会给封面链接加上 class="button") */
+    section.cover a.button {
+      display: inline-block; /* 让链接表现为行内块，以便设置 padding 和 margin */
+      padding: 0.75em 1.5em;
+      border-radius: 4px;
+      background-color: var(--theme-color, #42b983); /* 使用主题色 */
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    section.cover a.button:hover {
+      background-color: #3aa070; /* 主题色的深色变体 */
+    }
     /* 你可以直接修改 _coverpage.md 中表格的内联样式，或者在这里覆盖它们 */
     /* 例如，修改封面中特定h1的样式 */
     section.cover #custom-profile-cover h1 {
@@ -128,7 +173,6 @@
       background-color: #3aa070; /* 悬停时变暗一些 */
     }
 
-
     /* 侧边栏 (_sidebar.md) 自定义样式 */
     .sidebar {
       background-color: transparent; /* 自定义侧边栏背景色 */
@@ -176,17 +220,19 @@
       border-bottom: 1px solid #ccc;
     }
     section.cover .sidebar-toggle {
-      background-color: transparent; /* 例如，将背景设为透明 */
-      border: none; /* 如果不希望有边框，可以设为 none */
-      /* 如果希望在复杂背景下按钮轮廓更清晰，可以考虑一个非常细微的半透明边框或阴影 */
-      /* border: 1px solid rgba(0, 0, 0, 0.1); */
-      /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
-      padding: 5px; /* 根据视觉效果调整内边距 */
+      background: none !important; /* 强制背景为无，覆盖任何默认背景图或渐变 */
+      background-color: transparent !important; /* 强制背景色为透明 */
+      border: none !important; /* 移除所有边框，如果需要边框可以单独设置 */
+      padding: 8px; /* 轻微调整内边距，确保点击区域足够 */
+      /* 如果按钮本身有默认的 box-shadow，也可以在这里重置 */
+      /* box-shadow: none !important; */
     }
     section.cover .sidebar-toggle span {
-      background-color: #ffffff; /* 例如，将汉堡菜单的三条线设为白色 */
+      background-color: #ffffff !important; /* 例如，将汉堡菜单的三条线设为白色 */
       /* 或者选择一个在封面背景上清晰可见且不突兀的颜色 */
       /* background-color: #333333; */ /* 深灰色线条示例 */
+      /* 确保线条有高度 */
+      height: 2px; /* 或根据主题默认值调整 */
     }
     /* CV.md 个人信息区域特定样式 */
     .markdown-section .profile-section {
@@ -197,7 +243,6 @@
       padding-bottom: 20px;      /* 个人信息区域底部的内边距 */
       border-bottom: 1px solid #eee; /* 在个人信息区域下方添加一条细分隔线 */
     }
-
     .markdown-section .profile-image {
       flex-shrink: 0;            /* 防止图片在 Flex 容器空间不足时被压缩变形 */
       width: 170px;              /* 设置图片的固定宽度 */
@@ -206,35 +251,35 @@
       border-radius: 8px;        /* 图片的圆角大小，使其更柔和 */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); /* 为图片添加更自然的阴影效果 */
     }
-
     .markdown-section .profile-text {
       flex-grow: 1;              /* 文字描述区域占据剩余的可用空间 */
     }
-
     .markdown-section .profile-text h1 {
       margin-top: 0;             /* 移除文字区域内主标题 (h1) 的默认上边距，使其与图片顶部视觉上更对齐 */
       margin-bottom: 10px;       /* 主标题下方的外边距 */
-      font-size: 24px;           /* 主标题的字体大小，与原设计保持一致 */
+      font-size: 28px;           /* 主标题的字体大小 */
+      text-align: center;        /* 将标题文字居中对齐 */
       color: #333;              /* 主标题的文字颜色 */
+      font-family: "JetBrains Mono", SimSun, sans-serif;/* 修改字体类型 */
       border-bottom: 2px solid #ccc; /* 在主标题下方添加一条分隔线，与原设计保持一致 */
       padding-bottom: 8px;       /* 主标题分隔线下方的内边距 */
     }
-
     .markdown-section .profile-text p {
       margin-bottom: 15px;       /* 段落之间的下外边距 */
       line-height: 1.7;          /* 段落的行高，增加可读性 */
       color: #555;              /* 段落文字颜色 */
+      font-size: 18px;           /* 主标题的字体大小 */
+      font-family: "JetBrains Mono", SimSun, sans-serif;/* 修改字体类型 */
     }
-
     .markdown-section .profile-text .profile-links {
       margin-top: 20px;          /* 个人链接区域（如GitHub、Email徽章）的上外边距 */
-      text-align: left;          /* 链接徽章靠左对齐 (如果需要居中或居右可修改为 center/right) */
+      font-size: 14px;           /* 主标题的字体大小 */
+      font-family: "JetBrains Mono", SimSun, sans-serif;/* 修改字体类型 */
+      text-align: center;          /* 链接徽章靠居中 center/right */
     }
-
     .markdown-section .profile-text .profile-links img {
       vertical-align: middle;    /* 使徽章图片与可能的相邻文本垂直对齐得更好 */
     }
-
     /* 为 Me/CV.md, Me/Academic.md, Me/Project.md 中由 Markdown 生成的 ## 标题添加下边框 */
     /* 这些页面之前使用 h1 + table 结构，h1 有下边框。现在改为 ## (h2)，也给它们加上类似的边框 */
     .markdown-section h2 {
