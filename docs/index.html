@@ -87,9 +87,11 @@
     }
     /* 导航栏 (_navbar.md) 自定义样式 */
     .app-nav { /* Docsify 导航栏的默认类名 */
-      background-color: #f0f2f5; /* 自定义导航栏背景色 */
+      background-color: transparent; /* 自定义导航栏背景色 */
       padding: 5px 0; /* 上下内边距 */
       border-bottom: 2px solid var(--theme-color, #42b983); /* 使用主题色或自定义颜色作为下边框 */
+      position: relative; /* 可选，如果需要确保 z-index 生效 */
+      z-index: 10;      /* 确保导航栏在某些页面元素之上 */
     }
     .app-nav ul {
       list-style: none;
@@ -111,7 +113,7 @@
     }
     .app-nav ul li a:hover,
     .app-nav ul li > span:hover {
-      color: #42b983; /* 鼠标悬停时的文字颜色 */
+      color: var(--theme-color, #42b983); /* 鼠标悬停时使用主题强调色 */
       text-decoration: none; /* 通常导航栏链接不希望有下划线 */
     }
     /* 针对 _navbar.md 中 <span class="custom-nav-link"> 的特定样式 */
@@ -175,10 +177,12 @@
     }
     section.cover .sidebar-toggle {
       background-color: transparent; /* 例如，将背景设为透明 */
-      /* 或者选择一个与您的封面页设计更协调的背景色 */
-      /* background-color: rgba(0, 0, 0, 0.2); */ /* 半透明黑色背景示例 */
+      border: none; /* 如果不希望有边框，可以设为 none */
+      /* 如果希望在复杂背景下按钮轮廓更清晰，可以考虑一个非常细微的半透明边框或阴影 */
+      /* border: 1px solid rgba(0, 0, 0, 0.1); */
+      /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
+      padding: 5px; /* 根据视觉效果调整内边距 */
     }
-
     section.cover .sidebar-toggle span {
       background-color: #ffffff; /* 例如，将汉堡菜单的三条线设为白色 */
       /* 或者选择一个在封面背景上清晰可见且不突兀的颜色 */
