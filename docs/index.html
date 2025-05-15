@@ -37,13 +37,11 @@
     section.content {  /* 或者这个，具体取决于 Docsify 版本和主题 */
       flex-grow: 1; /* 关键：让主要内容区域占据 #app 内所有剩余的垂直空间 */
     }
-
     /* 如果以上选择器不精确，检查实际渲染的 HTML 结构，#app 的直接子元素中哪一个是内容容器 */
     /* fallback，如果上面的不直接生效，确保 #app 的某个主要子容器能扩展 */
     /* 例如，如果 cover page 和普通页面结构不同，需要注意 */
     /* section.cover 已经有 min-height: 100vh，通常它自己会撑满 */
     /* 对于普通页面， .content 或 main 需要 flex-grow: 1; */
-
     footer.docsify-footer-enh,
     footer {
       width: 100%;
@@ -66,13 +64,11 @@
       justify-content: center; /* 水平居中 */
       padding: 10px; /* 给封面整体一些内边距，避免内容贴边 */
     }
-
     /* 如果你在_coverpage.md的HTML外包裹了一个div，例如 <div id="custom-profile-cover"> */
     section.cover #custom-profile-cover {
       background-color: transparent;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
       max-width: 900px; /* 限制内容最大宽度 */
       width: 90%; /* 响应式宽度 */
     }
@@ -91,8 +87,8 @@
     section.cover .cover-main > img {    /* 如果图片是 .cover-main 的直接子元素 */
       display: block !important; /* 强制为块级 */
       margin: 0 auto 15px auto !important; /* 上0，左右auto，下25px */
-      max-width: 100px; /* 调整图片最大宽度 */
-      height: auto;
+      width: 100px; /* 调整图片最大宽度 */
+      height: 100px;
     }
 
     /* 封面页标题 */
@@ -146,15 +142,6 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 8px rgba(0,0,0,0.12);
     }
-    /* 你可以直接修改 _coverpage.md 中表格的内联样式，或者在这里覆盖它们 */
-    /* 例如，修改封面中特定h1的样式 */
-    section.cover #custom-profile-cover h1 {
-      font-size: 28px !important; /* 覆盖内联样式 */
-      /* color: #1a73e8 !important; */
-    }
-    section.cover #custom-profile-cover p {
-        /* line-height: 1.7; */
-    }
     /* 导航栏 (_navbar.md) 自定义样式 */
     .app-nav { /* Docsify 导航栏的默认类名 */
       background-color: transparent; /* 自定义导航栏背景色 */
@@ -196,12 +183,10 @@
     .app-nav .custom-nav-link:hover {
       background-color: #3aa070; /* 悬停时变暗一些 */
     }
-
     /* 侧边栏 (_sidebar.md) 自定义样式 */
     .sidebar {
       background-color: transparent; /* 自定义侧边栏背景色 */
-      border-right: 1px solid #e0e0e0; /* 右边框颜色 */
-      width: 280px; /* 自定义侧边栏宽度 */
+      width: 220px; /* 自定义侧边栏宽度 */
     }
     /* 侧边栏标题 (如果通过 $docsify.name 设置并且没有 _sidebar.md) */
     /* .sidebar > h1 { font-size: 1.5em; color: #333; text-align: left; padding-left: 15px; } */
@@ -566,6 +551,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- 定义加载时候的动作 -->
   <div id="app">加载中...</div>
@@ -603,7 +589,7 @@
       // 是否使用相对路径
       relativePath: false,
       // 侧边栏中出现的网站图标
-      logo: '',
+      logo: 'images/book.png',
       // 禁用 emoji 解析
       noEmoji: false,
       // 显示文档更新日期
@@ -709,7 +695,7 @@
           }
         }
       }
-    }
+    };
   </script>
   <!-- 主题 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
