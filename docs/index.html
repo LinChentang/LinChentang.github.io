@@ -87,8 +87,8 @@
     section.cover .cover-main > img {    /* 如果图片是 .cover-main 的直接子元素 */
       display: block !important; /* 强制为块级 */
       margin: 0 auto 15px auto !important; /* 上0，左右auto，下25px */
-      width: 100px; /* 调整图片最大宽度 */
-      height: 100px;
+      width: 200px; /* 调整图片最大宽度 */
+      height: 200px;
     }
 
     /* 封面页标题 */
@@ -263,6 +263,19 @@
     }
     section.cover button.sidebar-toggle span:last-child {
       margin-bottom: 0 !important;
+    }
+    /* 针对非封面页 (或者所有页面) 的侧边栏 toggle 按钮 */
+    button.sidebar-toggle,
+    .sidebar-toggle {
+      background-color: transparent !important; /* 设置背景为完全透明 */
+      /* border: none !important; */ /* 如果需要移除边框 */
+      /* box-shadow: none !important; */ /* 如果需要移除阴影 */
+    }
+
+    /* 按钮内部线条在非封面页的颜色 */
+    /* 如果封面页线条是白色，非封面页背景是浅色，则线条需要变深 */
+    body:not(.cover) button.sidebar-toggle span {
+      background-color: #505050 !important; /* 深灰色线条 */
     }
     /* CV.md 个人信息区域特定样式 */
     .markdown-section .profile-section {
@@ -588,8 +601,6 @@
       auto2top: true,
       // 是否使用相对路径
       relativePath: false,
-      // 侧边栏中出现的网站图标
-      logo: 'images/book.png',
       // 禁用 emoji 解析
       noEmoji: false,
       // 显示文档更新日期
