@@ -22,5 +22,13 @@
 * Embedded Development
 
 ## Honors and Awards
-* 2025, Outstanding Graduates of Beijing.
-* 2025, Outstanding Graduate of Beijing Union University.
+* 2025, Outstanding Graduates of Beijing
+* 2025, Outstanding Graduate of Beijing Union University
+* 2023, The 10th North China Five Provinces Robot Competition (Intelligent Robot Unmanned Driving Group) Provincial First Prize
+* 2023, The 10th North China Five Provinces Robot Competition (Intelligent Robot Unmanned Driving Group) Beijing Provincial First Prize
+* 2023, The 15th Beijing University Physics Experiment Competition Beijing Second Prize
+* 2024, China Robot and Artificial Intelligence Competition (Beijing Division) Beijing Third Prize
+* 2023, National College Student Electronic Design Competition (Beijing Division) Beijing Second Prize
+* 2024, College Student Mathematics Competition Beijing Third Prize
+* 2023, College Student Mathematics Competition Beijing Third Prize
+* 2022, China Intelligent Robot Fighting and Competition Preliminary Third Prize

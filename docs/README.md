@@ -1,25 +1,27 @@
-# About Me
+# [About Me](/docs/Me/CV.md)
 
 > 长风破浪会有时，直挂云帆济沧海！
 
-## title
+## Title
 
-- DataWhale成员
-- AI TIME成员
+- [DataWhale成员](https://www.datawhale.cn/)
+- [AI TIME成员](https://www.aitime.cn/)
 
-## 教育经历
+## Educational 
 
-### 本科
+#### 👨‍🎓Undergraduate
 
-**2021.9 - 2025.6 北京联合大学 机器人学院自动化**
+**2021.9 - 2025.6 北京联合大学机器人学院自动化专业**
 
-- 院优秀毕业生，市优秀毕业生，GPA3.74
+- 校优秀毕业生，市优秀毕业生，GPA3.74/5，前20%
 
-## 工作经历
+## Work 
 
-**打杂**
 
-## 开源项目
+
+## [Projects](/docs/Me/Project.md)
+
+### Open Source Projects
 
 - [llm-cookbook](https://github.com/datawhalechina/llm-cookbook)
 - [llm-universe](https://github.com/datawhalechina/llm-universe)
@@ -29,7 +31,13 @@
 - [unusual-deep-learning](https://github.com/datawhalechina/unusual-deep-learning)
 - [undingable-optimization](https://github.com/datawhalechina/undingable-optimization)
 
-##### 找到我
+### School Project
+
+#### 北京联合大学“启明星”大学生科技创新项目
+
+- 基于深度学习的服务型机器人的设计与实现
+
+## Find Me
 
 <div>
   <a href="https://linchentang.top/wechat_qrcode" target="_blank"><img src="/docs/images/plugin/微信.png"  style="height:28px; vertical-align:middle; margin-right:4px;">WeChat</a>&emsp;

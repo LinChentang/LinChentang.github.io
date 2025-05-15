@@ -14,3 +14,10 @@
     \- 深度学习教程
 * [undingable-optimization](https://github.com/datawhalechina/undingable-optimization)<br/>
     \- 运筹优化教程
+
+## School Projects
+
+### 北京联合大学“启明星”大学生科技创新项目
+
+* 基于深度学习的服务型机器人的设计与实现<br/>
+    \- 校级立项
