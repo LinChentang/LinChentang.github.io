@@ -10,4 +10,3 @@
     * [🗓️ Day1](StudyNotes/DiveintoDeepLearning/Notes/day1.md) 
   * [📘 Machine Learning](StudyNotes/MachineLearning/Notes/README.md)
     * [🗓️ Day1](StudyNotes/MachineLearning/Notes/day1.md)
-
