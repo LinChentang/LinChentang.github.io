@@ -64,6 +64,7 @@
       display: flex; /* 启用flex布局以便更好地控制内容对齐 */
       align-items: center; /* 垂直居中 */
       justify-content: center; /* 水平居中 */
+      padding: 20px; /* 给封面整体一些内边距，避免内容贴边 */
     }
 
     /* 如果你在_coverpage.md的HTML外包裹了一个div，例如 <div id="custom-profile-cover"> */
@@ -82,45 +83,46 @@
       flex-direction: column; /* 子元素垂直方向堆叠 */
       align-items: center; /* 让 flex 子项（图片、标题、段落等）在交叉轴（水平方向）上居中 */
       text-align: center;  /* 让 .cover-main 内所有文本内容（包括按钮文字）默认居中 */
+      width: 100%;         /* 让 .cover-main 撑满其在 flex 容器中的可用空间 */
+      max-width: 550px;    /* 调整一个更合适的整体内容宽度 */
     }
     /* 确保图片是块级元素并使用 margin auto 居中 */
     section.cover .cover-main > p > img, /* 如果图片在P标签内 */
     section.cover .cover-main > img {    /* 如果图片是 .cover-main 的直接子元素 */
       display: block !important; /* 强制为块级 */
-      margin-left: auto !important;
-      margin-right: auto !important;
-      margin-bottom: 25px; /* 调整图片与下方标题的间距 */
-      max-width: 160px; /* 调整图片最大宽度 */
+      margin: 0 auto 25px auto !important; /* 上0，左右auto，下25px */
+      max-width: 150px; /* 调整图片最大宽度 */
       height: auto;
     }
 
     /* 封面页标题 */
     section.cover .cover-main h1 {
-      font-size: 2.8em; /* 增大主标题 */
-      margin-top: 0;
-      margin-bottom: 0.6em;
-      color: #3a3a3a; /* 标题颜色可以深一些 */
+      font-size: 2.6em; /* 增大主标题 */
+      margin: 0 0 0.5em 0; /* 上0，左右0，下0.5em */
+      color: #333; 
       font-weight: 600;
+      width: 100%; /* 确保标题块撑满 .cover-main 的宽度，以便 text-align:center 生效 */
     }
 
     section.cover .cover-main h2 {
-      font-size: 1.4em; /* 调整副标题大小 */
-      margin-top: 0;
-      margin-bottom: 1.5em; /* 增加与按钮的间距 */
-      color: #555;
+      font-size: 1.3em; /* 调整副标题大小 */
+      margin: 0 0 1.8em 0; /* 上0，左右0，下1.8em */
+      color: #4a4a4a;
       font-weight: 400;
+      width: 100%; /* 同上 */
+      line-height: 1.5;
     }
 
-    /* 封面页段落，特别是包含按钮的段落 */
-    section.cover .cover-main p {
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
+    /* 包裹按钮的段落 */
+    section.cover .cover-main p:has(a.button) { /* 选择包含按钮的p标签 */
+      margin-top: 1em; /* 与上方元素的间距 */
+      width: 100%; /* 同上 */
     }
 
     /* 封面页按钮 */
     section.cover .cover-main a.button {
       display: inline-block;
-      padding: 10px 30px; /* 增大按钮内边距 */
+      padding: 12px 35px; /* 增大按钮内边距 */
       font-size: 1em;
       border-radius: 25px; /* 圆角按钮 */
       background-color: var(--theme-color, #42b983);
@@ -149,7 +151,6 @@
     .app-nav { /* Docsify 导航栏的默认类名 */
       background-color: transparent; /* 自定义导航栏背景色 */
       padding: 5px 0; /* 上下内边距 */
-      border-bottom: 2px solid var(--theme-color, #42b983); /* 使用主题色或自定义颜色作为下边框 */
       position: relative; /* 可选，如果需要确保 z-index 生效 */
       z-index: 10;      /* 确保导航栏在某些页面元素之上 */
     }
@@ -238,15 +239,17 @@
     section.cover .sidebar-toggle:hover,
     section.cover .sidebar-toggle:focus,
     section.cover .sidebar-toggle:active {
-      background: none !important;
-      background-color: transparent !important;
-      border: none !important;
-      box-shadow: none !important; /* 移除可能的阴影 */
-      outline: none !important;    /* 移除焦点时的轮廓 */
-      padding: 8px;               /* 保留一些点击区域 */
-      opacity: 0.8; /* 可以让按钮稍微透明一点，融入背景，但仍可见 */
+      background: none !important; /* 移除任何可能的背景图片或渐变 */
+      background-color: transparent !important; /* 强制背景色为透明，覆盖 vue.css */
+      border: none !important; /* 移除边框 */
+      box-shadow: none !important; /* 移除阴影 */
+      outline: none !important;    /* 移除焦点轮廓 */
+      padding: 8px !important;    /* 确保内边距生效 */
+      opacity: 1 !important;      /* 先确保完全不透明，便于观察 */
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
     }
-
     /* 确保悬停时也没有意外的背景变化 */
     section.cover .sidebar-toggle:hover {
        opacity: 1; /* 悬停时完全不透明 */
@@ -259,6 +262,7 @@
       height: 2px !important; /* 强制线条高度 */
       display: block; /* 确保span是块级，以便背景色生效 */
       margin: 4px 0;  /* 调整线条之间的垂直间距 */
+      border-radius: 1px;
     }
     /* Docsify 的汉堡菜单通常有3条线，这是针对每一条线的 */
     section.cover .sidebar-toggle span:first-child {
