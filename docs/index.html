@@ -64,7 +64,7 @@
       display: flex; /* 启用flex布局以便更好地控制内容对齐 */
       align-items: center; /* 垂直居中 */
       justify-content: center; /* 水平居中 */
-      padding: 20px; /* 给封面整体一些内边距，避免内容贴边 */
+      padding: 10px; /* 给封面整体一些内边距，避免内容贴边 */
     }
 
     /* 如果你在_coverpage.md的HTML外包裹了一个div，例如 <div id="custom-profile-cover"> */
@@ -84,59 +84,67 @@
       align-items: center; /* 让 flex 子项（图片、标题、段落等）在交叉轴（水平方向）上居中 */
       text-align: center;  /* 让 .cover-main 内所有文本内容（包括按钮文字）默认居中 */
       width: 100%;         /* 让 .cover-main 撑满其在 flex 容器中的可用空间 */
-      max-width: 550px;    /* 调整一个更合适的整体内容宽度 */
+      max-width: 480px;    /* 调整一个更合适的整体内容宽度 */
     }
     /* 确保图片是块级元素并使用 margin auto 居中 */
     section.cover .cover-main > p > img, /* 如果图片在P标签内 */
     section.cover .cover-main > img {    /* 如果图片是 .cover-main 的直接子元素 */
       display: block !important; /* 强制为块级 */
-      margin: 0 auto 25px auto !important; /* 上0，左右auto，下25px */
-      max-width: 150px; /* 调整图片最大宽度 */
+      margin: 0 auto 15px auto !important; /* 上0，左右auto，下25px */
+      max-width: 100px; /* 调整图片最大宽度 */
       height: auto;
     }
 
     /* 封面页标题 */
     section.cover .cover-main h1 {
-      font-size: 2.6em; /* 增大主标题 */
-      margin: 0 0 0.5em 0; /* 上0，左右0，下0.5em */
+      font-size: 2em; /* 增大主标题 */
+      margin: 0 0 0.4em 0; /* 上0，左右0，下0.5em */
       color: #333; 
       font-weight: 600;
       width: 100%; /* 确保标题块撑满 .cover-main 的宽度，以便 text-align:center 生效 */
+      padding-left: 0; 
+      padding-right: 0;
+      line-height: 1.2; /* 调整行高 */
     }
 
     section.cover .cover-main h2 {
-      font-size: 1.3em; /* 调整副标题大小 */
-      margin: 0 0 1.8em 0; /* 上0，左右0，下1.8em */
-      color: #4a4a4a;
+      font-size: 1.1em; /* 调整副标题大小 */
+      margin: 0 0 1.2em 0; /* 上0，左右0，下1.8em */
+      color: #505050;
       font-weight: 400;
       width: 100%; /* 同上 */
-      line-height: 1.5;
+      line-height: 1.4; 
+      padding-left: 0;
+      padding-right: 0;
     }
 
     /* 包裹按钮的段落 */
     section.cover .cover-main p:has(a.button) { /* 选择包含按钮的p标签 */
       margin-top: 1em; /* 与上方元素的间距 */
-      width: 100%; /* 同上 */
+      margin-bottom: 0; /* 移除按钮段落下方的默认间距 */
+      width: 100%; 
+      padding-left: 0;
+      padding-right: 0;
     }
 
     /* 封面页按钮 */
     section.cover .cover-main a.button {
       display: inline-block;
-      padding: 12px 35px; /* 增大按钮内边距 */
-      font-size: 1em;
-      border-radius: 25px; /* 圆角按钮 */
+      padding: 8px 25px; /* 增大按钮内边距 */
+      font-size: 0.9em;
+      border-radius: 20px; /* 圆角按钮 */
       background-color: var(--theme-color, #42b983);
       color: white !important;
       text-decoration: none;
       font-weight: bold;
       transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     section.cover .cover-main a.button:hover {
       background-color: #3aa070; /* 主题色的深色变体 */
-      transform: translateY(-2px);
-      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
     }
     /* 你可以直接修改 _coverpage.md 中表格的内联样式，或者在这里覆盖它们 */
     /* 例如，修改封面中特定h1的样式 */
@@ -235,41 +243,41 @@
       color: #0056b3; /* 自定义颜色 */
       border-bottom: 1px solid #ccc;
     }
-    section.cover .sidebar-toggle,
-    section.cover .sidebar-toggle:hover,
-    section.cover .sidebar-toggle:focus,
-    section.cover .sidebar-toggle:active {
-      background: none !important; /* 移除任何可能的背景图片或渐变 */
-      background-color: transparent !important; /* 强制背景色为透明，覆盖 vue.css */
-      border: none !important; /* 移除边框 */
-      box-shadow: none !important; /* 移除阴影 */
-      outline: none !important;    /* 移除焦点轮廓 */
-      padding: 8px !important;    /* 确保内边距生效 */
-      opacity: 1 !important;      /* 先确保完全不透明，便于观察 */
-      -webkit-appearance: none !important;
-      -moz-appearance: none !important;
-      appearance: none !important;
-    }
-    /* 确保悬停时也没有意外的背景变化 */
-    section.cover .sidebar-toggle:hover {
-       opacity: 1; /* 悬停时完全不透明 */
+    /* --- 封面页侧边栏按钮 - 终极覆盖尝试 --- */
+    section.cover button.sidebar-toggle, /* 明确是 button 标签 */
+    section.cover button.sidebar-toggle:hover,
+    section.cover button.sidebar-toggle:focus,
+    section.cover button.sidebar-toggle:active {
+      all: unset !important; /* 强力重置所有样式 */
+
+    /* 然后重新定义我们需要的样式 */
+      display: inline-block !important; /* 或者 block */
+      background: transparent !important;
+      border: none !important;
+      padding: 8px !important; /* 根据视觉调整 */
+      cursor: pointer !important;
+      opacity: 1 !important; /* 先确保完全可见 */
+      line-height: 0 !important; /* 重置行高，避免影响内部 span 布局 */
+      vertical-align: middle !important;
+      /* 如果需要，可以尝试添加 position: relative; z-index: [一个较高的值]; */
     }
 
-    section.cover .sidebar-toggle span {
-      background-color: #FFFFFF !important; /* 强制线条为白色 */
+    /* 针对按钮内部的线条 (假设还是 span) */
+    section.cover button.sidebar-toggle span {
+      background-color: #FFFFFF !important; /* 强制白色线条 */
       /* 如果白色在您的封面背景上不明显，请尝试深色： */
       /* background-color: #333333 !important; */
-      height: 2px !important; /* 强制线条高度 */
-      display: block; /* 确保span是块级，以便背景色生效 */
-      margin: 4px 0;  /* 调整线条之间的垂直间距 */
-      border-radius: 1px;
+      height: 2px !important;
+      width: 18px !important; /* 给线条一个明确的宽度 */
+      display: block !important;
+      margin: 4px auto !important; /* 上下4px，左右auto（如果父级是flex且居中则有效）*/
+      border-radius: 1px !important;
     }
-    /* Docsify 的汉堡菜单通常有3条线，这是针对每一条线的 */
-    section.cover .sidebar-toggle span:first-child {
-      margin-top: 0;
+    section.cover button.sidebar-toggle span:first-child {
+      margin-top: 0 !important;
     }
-    section.cover .sidebar-toggle span:last-child {
-      margin-bottom: 0;
+    section.cover button.sidebar-toggle span:last-child {
+      margin-bottom: 0 !important;
     }
     /* CV.md 个人信息区域特定样式 */
     .markdown-section .profile-section {
