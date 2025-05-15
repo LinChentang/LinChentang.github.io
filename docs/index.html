@@ -23,6 +23,198 @@
       min-height: 100vh; /* 关键：确保 body 至少撑满整个视口高度 */
       margin: 0; /* 推荐：移除 body 的默认外边距 */
     }
+      /* 封面页 (_coverpage.md) 自定义样式 */
+    section.cover {
+      /* background-color: #f0f2f5; */
+      /* background-image: url('path/to/your/cover-background-image.jpg'); */
+      /* background-size: cover; */
+      /* background-position: center; */
+      /* color: #333; */ /* 整体文字颜色 */
+      min-height: 100vh; /* 确保封面至少占据整个视口高度 */
+      display: flex; /* 启用flex布局以便更好地控制内容对齐 */
+      align-items: center; /* 垂直居中 */
+      justify-content: center; /* 水平居中 */
+    }
+
+    /* 如果你在_coverpage.md的HTML外包裹了一个div，例如 <div id="custom-profile-cover"> */
+    section.cover #custom-profile-cover {
+      background-color: rgba(255, 255, 255, 0.9); /* 半透明背景，如果封面有背景图的话 */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      max-width: 900px; /* 限制内容最大宽度 */
+      width: 90%; /* 响应式宽度 */
+    }
+
+    /* 你可以直接修改 _coverpage.md 中表格的内联样式，或者在这里覆盖它们 */
+    /* 例如，修改封面中特定h1的样式 */
+    section.cover #custom-profile-cover h1 {
+      font-size: 28px !important; /* 覆盖内联样式 */
+      /* color: #1a73e8 !important; */
+    }
+    section.cover #custom-profile-cover p {
+        /* line-height: 1.7; */
+    }
+
+
+    /* 导航栏 (_navbar.md) 自定义样式 */
+    .app-nav { /* Docsify 导航栏的默认类名 */
+      background-color: #333A47; /* 自定义导航栏背景色 */
+      padding: 5px 0; /* 上下内边距 */
+      border-bottom: 2px solid var(--theme-color, #42b983); /* 使用主题色或自定义颜色作为下边框 */
+    }
+    .app-nav ul {
+      list-style: none;
+      padding-left: 25px; /* 调整整体左边距 */
+      margin: 0;
+      display: flex; /* 让导航项水平排列 */
+      align-items: center; /* 垂直居中对齐 */
+    }
+    .app-nav ul li {
+      margin-right: 25px; /* 导航项之间的右边距 */
+    }
+    .app-nav ul li a,
+    .app-nav ul li > span { /* 包括普通的链接和span元素 */
+      color: #E0E0E0; /* 自定义导航链接文字颜色 */
+      font-weight: 500; /* 字体粗细 */
+      font-size: 15px; /* 字体大小 */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .app-nav ul li a:hover,
+    .app-nav ul li > span:hover {
+      color: #FFFFFF; /* 鼠标悬停时的文字颜色 */
+      text-decoration: none; /* 通常导航栏链接不希望有下划线 */
+    }
+    /* 针对 _navbar.md 中 <span class="custom-nav-link"> 的特定样式 */
+    .app-nav .custom-nav-link {
+      background-color: var(--theme-color, #42b983); /* 使用主题色或自定义背景色 */
+      color: white !important; /* 重要：覆盖上面的颜色设置 */
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .app-nav .custom-nav-link:hover {
+      background-color: #3aa070; /* 悬停时变暗一些 */
+    }
+
+
+    /* 侧边栏 (_sidebar.md) 自定义样式 */
+    .sidebar {
+      background-color: #f8f9fa; /* 自定义侧边栏背景色 */
+      border-right: 1px solid #e0e0e0; /* 右边框颜色 */
+      width: 280px; /* 自定义侧边栏宽度 */
+    }
+    /* 侧边栏标题 (如果通过 $docsify.name 设置并且没有 _sidebar.md) */
+    /* .sidebar > h1 { font-size: 1.5em; color: #333; text-align: left; padding-left: 15px; } */
+
+    .sidebar-nav { /* 侧边栏导航列表 */
+      padding: 15px 0;
+    }
+    .sidebar-nav > ul > li > p { /* 侧边栏中作为分组标题的 <p> 标签 */
+      margin: 15px 15px 5px;
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #555;
+    }
+    .sidebar-nav ul li a {
+      color: #333; /* 链接文字颜色 */
+      font-size: 14px; /* 链接字体大小 */
+      padding: 8px 15px 8px 25px; /* 内边距调整，增加左内边距用于层级感 */
+      border-left: 3px solid transparent; /* 左侧高亮边框，默认透明 */
+      transition: background-color 0.2s ease, border-left-color 0.2s ease;
+    }
+    .sidebar-nav ul li a:hover {
+      color: var(--theme-color, #42b983); /* 鼠标悬停时文字颜色 */
+      background-color: #e9ecef; /* 鼠标悬停时背景色 */
+      text-decoration: none;
+    }
+    .sidebar-nav ul li.active > a { /* 当前活动链接 */
+      color: var(--theme-color, #42b983);
+      font-weight: 600;
+      border-left-color: var(--theme-color, #42b983) !important; /* 活动链接左侧高亮 */
+      background-color: #f0f8f5; /* 活动链接背景色 */
+    }
+    /* 针对 _sidebar.md 中 <span class="custom-sidebar-header"> 的特定样式 */
+    .sidebar .custom-sidebar-header {
+      display: block;
+      padding: 10px 15px;
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #0056b3; /* 自定义颜色 */
+      border-bottom: 1px solid #ccc;
+    }
+    /* CV.md 个人信息区域特定样式 */
+    .markdown-section .profile-section {
+      display: flex;             /* 启用 Flexbox 弹性布局，用于实现图片和文字的横向排列 */
+      align-items: flex-start;   /* 子项在交叉轴（此处为垂直方向）上顶部对齐 */
+      gap: 25px;                 /* 图片与右侧文字描述之间的间隙大小 */
+      margin-bottom: 30px;       /* 整个个人信息区域与下方内容的间距 */
+      padding-bottom: 20px;      /* 个人信息区域底部的内边距 */
+      border-bottom: 1px solid #eee; /* 在个人信息区域下方添加一条细分隔线 */
+    }
+
+    .markdown-section .profile-image {
+      flex-shrink: 0;            /* 防止图片在 Flex 容器空间不足时被压缩变形 */
+      width: 170px;              /* 设置图片的固定宽度 */
+      /* height: 220px; */      /* 可以选择设置固定高度，或让其根据宽度自适应，注释掉则自适应 */
+      object-fit: cover;         /* 如果设置了固定高度，确保图片内容充满并可能被裁剪，保持宽高比 */
+      border-radius: 8px;        /* 图片的圆角大小，使其更柔和 */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); /* 为图片添加更自然的阴影效果 */
+    }
+
+    .markdown-section .profile-text {
+      flex-grow: 1;              /* 文字描述区域占据剩余的可用空间 */
+    }
+
+    .markdown-section .profile-text h1 {
+      margin-top: 0;             /* 移除文字区域内主标题 (h1) 的默认上边距，使其与图片顶部视觉上更对齐 */
+      margin-bottom: 10px;       /* 主标题下方的外边距 */
+      font-size: 24px;           /* 主标题的字体大小，与原设计保持一致 */
+      color: #333;              /* 主标题的文字颜色 */
+      border-bottom: 2px solid #ccc; /* 在主标题下方添加一条分隔线，与原设计保持一致 */
+      padding-bottom: 8px;       /* 主标题分隔线下方的内边距 */
+    }
+
+    .markdown-section .profile-text p {
+      margin-bottom: 15px;       /* 段落之间的下外边距 */
+      line-height: 1.7;          /* 段落的行高，增加可读性 */
+      color: #555;              /* 段落文字颜色 */
+    }
+
+    .markdown-section .profile-text .profile-links {
+      margin-top: 20px;          /* 个人链接区域（如GitHub、Email徽章）的上外边距 */
+      text-align: left;          /* 链接徽章靠左对齐 (如果需要居中或居右可修改为 center/right) */
+    }
+
+    .markdown-section .profile-text .profile-links img {
+      vertical-align: middle;    /* 使徽章图片与可能的相邻文本垂直对齐得更好 */
+    }
+
+    /* 为 Me/CV.md, Me/Academic.md, Me/Project.md 中由 Markdown 生成的 ## 标题添加下边框 */
+    /* 这些页面之前使用 h1 + table 结构，h1 有下边框。现在改为 ## (h2)，也给它们加上类似的边框 */
+    .markdown-section h2 {
+      /* 继承已有的 .markdown-section h2 样式，但可以按需调整 */
+      /* 例如，确保它们也有一个底部分隔线，如果这是期望的统一风格 */
+       border-bottom: 1px solid #eaecef; /* 添加一个浅色的下边框，参考 GitHub 风格 */
+       padding-bottom: 0.3em;          /* 边框与文字之间的距离 */
+       /* margin: 2rem 0 1rem; */     /* 这是您原有的 h2 边距，可以保留或调整 */
+    }
+    
+    /* Me/Academic.md 和 Me/Project.md 中列表项的特定样式 (如果需要) */
+    .markdown-section ul li {
+      /* line-height: 1.8 !important; */ /* 已有全局设置 */
+      /* font-size: 16px !important; */ /* 已有全局设置 */
+      margin-bottom: 0.5em; /* 为列表项之间增加一点垂直间距，使其不那么拥挤 */
+    }
+
+    .markdown-section ul li br + * { /* 选中 <br/> 后的第一个元素，通常是描述行 */
+      display: inline-block; /* 或者 block，取决于希望如何展示 */
+      margin-left: 1em;     /* 给描述行增加一点左缩进，使其与主列表项区分 */
+      font-size: 0.95em;    /* 可以让描述行字号略小一点 */
+      color: #666;           /* 描述行文字颜色变浅 */
+    }
     /* 代码块和行内代码的字体设置: JetBrains Mono 优先，后备等宽字体 */
     /* .markdown-section 是 Docsify 主要内容区域的类名 */
     .markdown-section pre,    /* Markdown内容区的预格式化文本块 (通常用于代码块) */
@@ -163,6 +355,10 @@
     ol li, ul li {
       font-size: 16px !important;
     }
+    /* 对上面 ul li 的补充，避免全局 li 都受影响 */
+    .markdown-section > ul > li { /* 只选择 markdown 内容区的直接 ul 子元素下的 li */
+         margin-bottom: 0.5em; /* 之前为所有 ul li 设置的，现在更精确 */
+    }
     /* 响应式布局：当屏幕宽度大于等于600px时应用的样式 */
     @media (min-width:600px) {
       .markdown-section pre > code {
@@ -189,7 +385,25 @@
         right: 3px !important; /* 调整按钮位置，使其更靠近边缘 */
         top: 3px !important;
       }
-    }
+      /* 在小屏幕上，CV页面的个人信息部分改为垂直堆叠 */
+      .markdown-section .profile-section {
+        flex-direction: column; /* 图片和文字垂直排列 */
+        align-items: center;   /* 居中对齐 */
+      }
+      .markdown-section .profile-image {
+        width: 200px; /* 在小屏幕上图片可以适当放大一些 */
+        /* height: auto; */ /* 高度自适应 */
+        margin-bottom: 15px; /* 图片和下方文字的间距 */
+      }
+      .markdown-section .profile-text {
+        text-align: center; /* 文字内容也居中显示 */
+      }
+      .markdown-section .profile-text h1 {
+        text-align: center; /* 标题居中 */
+      }
+      .markdown-section .profile-text .profile-links {
+        text-align: center; /* 链接徽章也居中 */
+      }
     /* Docsify封面页 (coverpage) h1标题的样式 */
     section.cover h1 {
       margin: 0; /* 移除外边距 */

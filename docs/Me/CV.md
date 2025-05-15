@@ -1,48 +1,26 @@
-<table style="border: none; border-collapse: collapse;">
-  <tr style="border: none;">
-    <td style="border: none; width: 170px; height: 220px; vertical-align: middle; padding-right: 5px;">
-      <img src="../images/ChunshengZuo休闲.jpg" alt="Chunsheng Zuo Profile Photo" width="240px" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); border-radius: 5px;" />
-    </td>
-    <td style="border: none; vertical-align: middle;">
-      <h1 style="margin-top: 0; text-align: center; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 5px;">Chunsheng Zuo (左春生)</h1>
-      <p style="text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 14px; border-bottom: 2px solid #ccc; margin-top: 5px; padding-bottom: 5px; margin-bottom:15px;">I am an undergraduate student majoring in automation at the School of Robotics, Beijing Union University.<br>
+<div class="profile-section">
+  <img src="../images/ChunshengZuo休闲.jpg" alt="Chunsheng Zuo Profile Photo" class="profile-image"/>
+  <div class="profile-text">
+    <h1>Chunsheng Zuo (左春生)</h1>
+    <p>
+      I am an undergraduate student majoring in automation at the School of Robotics, Beijing Union University.<br>
       I am a continuous learner and explorer, and am passionate about participating in open-source projects related to embodied intelligence and grand prognostic models.<br>
       My open source and academic interests are listed below.<br>
-      If you are interested in my experience and have anything or questions to discuss, please feel free to contact me.</p>
-      <p style="text-align: center; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 14px;">
-        <a href="https://github.com/LinChentang" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/GitHub-LinChentang-blue" alt="GitHub LinChentang"></a>
-        &nbsp;&nbsp;
-        <a href="mailto:z1273611131@163.com"><img src="https://img.shields.io/badge/Email-z1273611131@163.com-red" alt="Email z1273611131@163.com"></a>
-      </p>
-    </td>
-  </tr>
-</table>
+      If you are interested in my experience and have anything or questions to discuss, please feel free to contact me.
+    </p>
+    <p class="profile-links">
+      <a href="https://github.com/LinChentang" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/GitHub-LinChentang-blue" alt="GitHub LinChentang"></a>
+      &nbsp;&nbsp;
+      <a href="mailto:z1273611131@163.com"><img src="https://img.shields.io/badge/Email-z1273611131@163.com-red" alt="Email z1273611131@163.com"></a>
+    </p>
+  </div>
+</div>
 
+## Research Interest
+* Research on Large Language Models
+* Embodied Intelligence
+* Embedded Development
 
-<table style="border: none; border-collapse: collapse;">
-  <tr style="border: none;">
-    <td style="border: none; text-align: left;">
-      <h1 style="margin-top: 0; text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 5px;">Research Interest</h1>
-      <ul style="text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 14px; margin-top: 5px; padding-bottom: 5px; margin-bottom:5px;">
-        <li>Research on Large Language Models</li>
-        <li>Embodied Intelligence</li>
-        <li>Embedded Development</li>
-        </ul>
-    </td>
-  </tr>
-</table>
-
-
-<table style="border: none; border-collapse: collapse;">
-  <tr style="border: none;">
-    <td style="border: none; text-align: left;">
-      <h1 style="margin-top: 0; text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 5px;">Honors and Awards</h1>
-      <ul style="text-align: left; font-family: JetBrains Mono,SimSun, sans-serif; font-size: 14px; margin-top: 5px; padding-bottom: 5px; margin-bottom:5px;">
-        <li>2025, Outstanding Graduates of Beijing.</li>
-        <li>2025, Outstanding Graduate of Beijing Union University.</li>
-        </ul>
-    </td>
-  </tr>
-</table>
-
-
+## Honors and Awards
+* 2025, Outstanding Graduates of Beijing.
+* 2025, Outstanding Graduate of Beijing Union University.
