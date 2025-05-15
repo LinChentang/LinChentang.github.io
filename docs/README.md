@@ -40,7 +40,7 @@
 ## Find Me
 
 <div style="text-align: center;">
-  <p  style="margin-top: -10px;">
+  <p>
     <a href="https://linchentang.top/wechat_qrcode/" target="_blank" rel="noopener noreferrer"><img src="images/plugin/微信.png"  style="height:32px; vertical-align:middle; margin-right:4px;"></a>&emsp;
     <a href="https://github.com/LinChentang" target="_blank" rel="noopener noreferrer"><img src="images/plugin/github.png" style="height:32px; vertical-align:middle; margin-right:4px;"></a>&emsp;
     <a href="mailto:z1273611131@163.com" target="_blank" rel="noopener noreferrer"><img src="images/plugin/邮箱.png"  style="height:32px; vertical-align:middle; margin-right:4px;"></a>&emsp;
