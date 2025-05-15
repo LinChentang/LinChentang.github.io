@@ -146,8 +146,12 @@
     .app-nav { /* Docsify 导航栏的默认类名 */
       background-color: transparent; /* 自定义导航栏背景色 */
       padding: 5px 0; /* 上下内边距 */
-      position: relative; /* 可选，如果需要确保 z-index 生效 */
-      z-index: 10;      /* 确保导航栏在某些页面元素之上 */
+      position:  fixed; /* 可选，如果需要确保 z-index 生效 */
+      top: 0; /* 关键改动：固定在页面顶部 */
+      left: 0; /* 可选，确保从左边开始 */
+      width: 100%; /* 关键改动：使其宽度占满整个屏幕 */
+      z-index: 1000; /* 确保导航栏在其他内容之上，可以根据需要调整数值，原有的 z-index: 10 也可以，但更高的值更保险 */
+      /* 确保导航栏在某些页面元素之上 */
     }
     .app-nav ul {
       list-style: none;
