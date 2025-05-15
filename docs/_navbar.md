@@ -10,13 +10,14 @@
   * [Machine Learning](StudyNotes/MachineLearning/Notes/README.md)
 
 * Follow Me
-  * [🌐 Github](https://github.com/LinChentang)
-  * [📧 Email](mailto:z1273611131@163.com)
-  * [知乎](https://www.zhihu.com/people/yu-chen-63-69-85)
-  * [bilibili](https://space.bilibili.com/346629528?spm_id_from=333.1007.0.0)
-  * [CSDN](https://blog.csdn.net/weixin_64266899?spm=1011.2124.3001.5343)
-  * [小红书](https://www.xiaohongshu.com/user/profile/66a673f5000000001d023fdb)
-  * [YouTube](https://www.youtube.com/@linchentang618)
+  * <a href="https://github.com/LinChentang" target="_blank"><img src="images/plugin/github.png" style="height:20px; vertical-align:middle; margin-right:4px;">Github</a>
+  * <a href="mailto:z1273611131@163.com" target="_blank"><img src="images/plugin/邮箱.png"  style="height:20px; vertical-align:middle; margin-right:4px;">Email</a>
+  * <a href="https://space.bilibili.com/346629528?spm_id_from=333.1007.0.0" target="_blank"><img src="images/plugin/哔哩哔哩.png"  style="height:20px; vertical-align:middle; margin-right:4px;">BiliBili</a>
+  * <a href="https://www.zhihu.com/people/yu-chen-63-69-85" target="_blank"><img src="images/plugin/知乎.png"  style="height:20px; vertical-align:middle; margin-right:4px;">知乎</a>
+  * <a href="https://www.xiaohongshu.com/user/profile/66a673f5000000001d023fdb" target="_blank"><img src="images/plugin/小红书.png"  style="height:20px; vertical-align:middle; margin-right:4px;">小红书</a>
+  * <a href="https://www.youtube.com/@linchentang618" target="_blank"><img src="images/plugin/youtube .png"  style="height:20px; vertical-align:middle; margin-right:4px;">YouTube</a>
+  * <a href="https://blog.csdn.net/weixin_64266899?spm=1011.2124.3001.5343" target="_blank"><img src="/docs/images/plugin/CSDN.png"  style="height:20px; vertical-align:middle; margin-right:4px;">CSDN</a>
+
 
 * Friends
   * [锋哥](https://github.com/Relph1119)

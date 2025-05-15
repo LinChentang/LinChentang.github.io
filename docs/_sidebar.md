@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-* 👨‍💻 Me
+* 🪪 Me
   * [📄 CV](Me/CV.md)
   * [🚀 Project](Me/Project.md)
   * [🎓 Academic](Me/Academic.md)
