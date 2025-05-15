@@ -23,7 +23,37 @@
       min-height: 100vh; /* 关键：确保 body 至少撑满整个视口高度 */
       margin: 0; /* 推荐：移除 body 的默认外边距 */
     }
-      /* 封面页 (_coverpage.md) 自定义样式 */
+    /* Docsify 通常将内容加载到 #app 元素中 */
+    /* 让 #app 元素也参与到 flex 布局中，以便其子元素可以正确地 flex-grow */
+    #app {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; /* 关键：让 #app 区域占据所有剩余的垂直空间 */
+    }
+    /* Docsify 的主要内容区域，通常是 main 标签或者是 class="content" 的 section */
+    /* 如果 #app 直接包含了 .markdown-section，那可能需要让 .markdown-section 的父容器 flex-grow */
+    /* 或者，如果 Docsify 创建了一个明确的 main content wrapper，比如 main.app-content */
+    main.app-content, /* Docsify 默认主题可能使用这个 */
+    section.content {  /* 或者这个，具体取决于 Docsify 版本和主题 */
+      flex-grow: 1; /* 关键：让主要内容区域占据 #app 内所有剩余的垂直空间 */
+    }
+
+    /* 如果以上选择器不精确，检查实际渲染的 HTML 结构，#app 的直接子元素中哪一个是内容容器 */
+    /* fallback，如果上面的不直接生效，确保 #app 的某个主要子容器能扩展 */
+    /* 例如，如果 cover page 和普通页面结构不同，需要注意 */
+    /* section.cover 已经有 min-height: 100vh，通常它自己会撑满 */
+    /* 对于普通页面， .content 或 main 需要 flex-grow: 1; */
+
+    footer.docsify-footer-enh,
+    footer {
+      width: 100%;
+      background-color: #ffffff;
+      z-index: 100;
+      padding: 10px 0;
+      flex-shrink: 0; /* 确保页脚不会被压缩 */
+      /* text-align: center; 由 $docsify.footer.style 控制 */
+    }
+    /* 封面页 (_coverpage.md) 自定义样式 */
     section.cover {
       /* background-color: #f0f2f5; */
       /* background-image: url('path/to/your/cover-background-image.jpg'); */
@@ -55,11 +85,9 @@
     section.cover #custom-profile-cover p {
         /* line-height: 1.7; */
     }
-
-
     /* 导航栏 (_navbar.md) 自定义样式 */
     .app-nav { /* Docsify 导航栏的默认类名 */
-      background-color: #333A47; /* 自定义导航栏背景色 */
+      background-color: #f0f2f5; /* 自定义导航栏背景色 */
       padding: 5px 0; /* 上下内边距 */
       border-bottom: 2px solid var(--theme-color, #42b983); /* 使用主题色或自定义颜色作为下边框 */
     }
@@ -75,7 +103,7 @@
     }
     .app-nav ul li a,
     .app-nav ul li > span { /* 包括普通的链接和span元素 */
-      color: #E0E0E0; /* 自定义导航链接文字颜色 */
+      color: #333333; /* 自定义导航链接文字颜色 */
       font-weight: 500; /* 字体粗细 */
       font-size: 15px; /* 字体大小 */
       text-decoration: none;
@@ -83,7 +111,7 @@
     }
     .app-nav ul li a:hover,
     .app-nav ul li > span:hover {
-      color: #FFFFFF; /* 鼠标悬停时的文字颜色 */
+      color: #42b983; /* 鼠标悬停时的文字颜色 */
       text-decoration: none; /* 通常导航栏链接不希望有下划线 */
     }
     /* 针对 _navbar.md 中 <span class="custom-nav-link"> 的特定样式 */
@@ -144,6 +172,17 @@
       font-weight: bold;
       color: #0056b3; /* 自定义颜色 */
       border-bottom: 1px solid #ccc;
+    }
+    section.cover .sidebar-toggle {
+      background-color: transparent; /* 例如，将背景设为透明 */
+      /* 或者选择一个与您的封面页设计更协调的背景色 */
+      /* background-color: rgba(0, 0, 0, 0.2); */ /* 半透明黑色背景示例 */
+    }
+
+    section.cover .sidebar-toggle span {
+      background-color: #ffffff; /* 例如，将汉堡菜单的三条线设为白色 */
+      /* 或者选择一个在封面背景上清晰可见且不突兀的颜色 */
+      /* background-color: #333333; */ /* 深灰色线条示例 */
     }
     /* CV.md 个人信息区域特定样式 */
     .markdown-section .profile-section {
