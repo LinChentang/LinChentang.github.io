@@ -64,7 +64,6 @@
       display: flex; /* 启用flex布局以便更好地控制内容对齐 */
       align-items: center; /* 垂直居中 */
       justify-content: center; /* 水平居中 */
-      text-align: center; /* 新增：让 section.cover 内的行内和行内块元素默认居中 */
     }
 
     /* 如果你在_coverpage.md的HTML外包裹了一个div，例如 <div id="custom-profile-cover"> */
@@ -82,44 +81,60 @@
       display: flex; /* 使用 flex 布局让子元素垂直排列 */
       flex-direction: column; /* 子元素垂直方向堆叠 */
       align-items: center; /* 让 flex 子项（图片、标题、段落等）在交叉轴（水平方向）上居中 */
+      text-align: center;  /* 让 .cover-main 内所有文本内容（包括按钮文字）默认居中 */
     }
-    /* 如果图片不是直接居中，可以单独设置 */
-    section.cover img {
-      display: block; /* 让图片表现为块级元素 */
-      margin-left: auto; /* 配合 display: block 实现图片水平居中 */
-      margin-right: auto; /* 配合 display: block 实现图片水平居中 */
-      margin-bottom: 20px; /* 图片和下方文字的间距 */
+    /* 确保图片是块级元素并使用 margin auto 居中 */
+    section.cover .cover-main > p > img, /* 如果图片在P标签内 */
+    section.cover .cover-main > img {    /* 如果图片是 .cover-main 的直接子元素 */
+      display: block !important; /* 强制为块级 */
+      margin-left: auto !important;
+      margin-right: auto !important;
+      margin-bottom: 25px; /* 调整图片与下方标题的间距 */
+      max-width: 160px; /* 调整图片最大宽度 */
+      height: auto;
     }
 
-    /* 封面页的标题 h1, h2 (如果上面的 align-items: center 不够用或想更精确控制) */
-    section.cover h1,
-    section.cover h2 {
-      text-align: center; /* 确保标题文字居中 */
-      margin-top: 0.5em; /* 调整标题之间的间距 */
+    /* 封面页标题 */
+    section.cover .cover-main h1 {
+      font-size: 2.8em; /* 增大主标题 */
+      margin-top: 0;
+      margin-bottom: 0.6em;
+      color: #3a3a3a; /* 标题颜色可以深一些 */
+      font-weight: 600;
+    }
+
+    section.cover .cover-main h2 {
+      font-size: 1.4em; /* 调整副标题大小 */
+      margin-top: 0;
+      margin-bottom: 1.5em; /* 增加与按钮的间距 */
+      color: #555;
+      font-weight: 400;
+    }
+
+    /* 封面页段落，特别是包含按钮的段落 */
+    section.cover .cover-main p {
+      margin-top: 0.5em;
       margin-bottom: 0.5em;
     }
 
-    /* 封面页的段落和链接按钮 */
-    section.cover p {
-      text-align: center; /* 确保段落文字（包括链接按钮所在的段落）居中 */
-      margin-top: 1em;
-      margin-bottom: 1em;
-    }
-
-    /* 封面页上的链接按钮样式 (Docsify 默认会给封面链接加上 class="button") */
-    section.cover a.button {
-      display: inline-block; /* 让链接表现为行内块，以便设置 padding 和 margin */
-      padding: 0.75em 1.5em;
-      border-radius: 4px;
-      background-color: var(--theme-color, #42b983); /* 使用主题色 */
-      color: white;
+    /* 封面页按钮 */
+    section.cover .cover-main a.button {
+      display: inline-block;
+      padding: 10px 30px; /* 增大按钮内边距 */
+      font-size: 1em;
+      border-radius: 25px; /* 圆角按钮 */
+      background-color: var(--theme-color, #42b983);
+      color: white !important;
       text-decoration: none;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
 
-    section.cover a.button:hover {
+    section.cover .cover-main a.button:hover {
       background-color: #3aa070; /* 主题色的深色变体 */
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
     }
     /* 你可以直接修改 _coverpage.md 中表格的内联样式，或者在这里覆盖它们 */
     /* 例如，修改封面中特定h1的样式 */
@@ -219,20 +234,38 @@
       color: #0056b3; /* 自定义颜色 */
       border-bottom: 1px solid #ccc;
     }
-    section.cover .sidebar-toggle {
-      background: none !important; /* 强制背景为无，覆盖任何默认背景图或渐变 */
-      background-color: transparent !important; /* 强制背景色为透明 */
-      border: none !important; /* 移除所有边框，如果需要边框可以单独设置 */
-      padding: 8px; /* 轻微调整内边距，确保点击区域足够 */
-      /* 如果按钮本身有默认的 box-shadow，也可以在这里重置 */
-      /* box-shadow: none !important; */
+    section.cover .sidebar-toggle,
+    section.cover .sidebar-toggle:hover,
+    section.cover .sidebar-toggle:focus,
+    section.cover .sidebar-toggle:active {
+      background: none !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important; /* 移除可能的阴影 */
+      outline: none !important;    /* 移除焦点时的轮廓 */
+      padding: 8px;               /* 保留一些点击区域 */
+      opacity: 0.8; /* 可以让按钮稍微透明一点，融入背景，但仍可见 */
     }
+
+    /* 确保悬停时也没有意外的背景变化 */
+    section.cover .sidebar-toggle:hover {
+       opacity: 1; /* 悬停时完全不透明 */
+    }
+
     section.cover .sidebar-toggle span {
-      background-color: #ffffff !important; /* 例如，将汉堡菜单的三条线设为白色 */
-      /* 或者选择一个在封面背景上清晰可见且不突兀的颜色 */
-      /* background-color: #333333; */ /* 深灰色线条示例 */
-      /* 确保线条有高度 */
-      height: 2px; /* 或根据主题默认值调整 */
+      background-color: #FFFFFF !important; /* 强制线条为白色 */
+      /* 如果白色在您的封面背景上不明显，请尝试深色： */
+      /* background-color: #333333 !important; */
+      height: 2px !important; /* 强制线条高度 */
+      display: block; /* 确保span是块级，以便背景色生效 */
+      margin: 4px 0;  /* 调整线条之间的垂直间距 */
+    }
+    /* Docsify 的汉堡菜单通常有3条线，这是针对每一条线的 */
+    section.cover .sidebar-toggle span:first-child {
+      margin-top: 0;
+    }
+    section.cover .sidebar-toggle span:last-child {
+      margin-bottom: 0;
     }
     /* CV.md 个人信息区域特定样式 */
     .markdown-section .profile-section {
