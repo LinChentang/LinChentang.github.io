@@ -6,8 +6,10 @@
   * [🎓Academic](Me/Academic.md)
 
 * 📚StudyNotes
-  * [📔Dive into Deep Learning](StudyNotes/DiveintoDeepLearning/Notes/README.md)
-  * [📔Machine Learning](StudyNotes/MachineLearning/Notes/README.md)
+  * [📔Dive into Deep Learning](StudyNotes/DiveintoDeepLearning/README.md)
+  * [📔Machine Learning](StudyNotes/MachineLearning/README.md)
+  * [📔Modern Robotics](StudyNotes/ModernRobotics/README.md)
+  * [📔Pattern Recognition](StudyNotes/PatternRecognition/README.md)
 
 * 🔍Follow Me
   * <a href="https://linchentang.top/wechat_qrcode/" target="_blank" rel="noopener noreferrer"><img src="images/plugin/微信.png"  style="height:32px; vertical-align:middle; margin-right:4px;"></a>
